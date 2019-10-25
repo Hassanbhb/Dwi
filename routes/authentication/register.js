@@ -29,7 +29,6 @@ router.post("/register", (req, res) => {
             req.flash("error", "An Error happened, please try again!");
             res.redirect("/");
           }
-          console.log("success");
           req.flash("success", "success, you can login now");
           res.redirect("/");
         });

@@ -8,20 +8,21 @@ block content
         input(type="text" name="newPost" placeholder="What's on your mind" required)
         button(type="submit") Post
     .posts
-      .post
-        .postOwner
-          p Hassan Ben Haj Bouih
-          p 20-10-2019
-        .postText
-          p Hi this is my first post
-        .heart
-          p ❤5
-        .reaction
-          ul
-            li
-              a(href="#") Like    
-            li
-              a(href="#") Comment
-        form(action="new/comment", method="post")
-          input(type="text" placeholder="Write a comment...")    
-          button(type="submit") Send
+      each post in posts.reverse()
+        .card
+          .postOwner
+            p= post.createdBy
+            p= post.createdAt
+          .postText
+            p= post.body
+          .heart
+            p ❤ #{post.likes}
+          .reaction
+            ul
+              li
+                a(href="#") Like    
+              li
+                a(href="#") Comment
+          form(action="new/comment", method="post")
+            input(type="text" placeholder="Write a comment...")    
+            button(type="submit") Send
