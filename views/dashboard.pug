@@ -1,5 +1,27 @@
 extends layouts/layout.pug
 block content
-  h1 Dashboard
-  p welcome #{user.name}
-  a(href="/logout") Logout
+  include partials/navbar.pug
+  main
+    .postForm
+      form(action="new/post", method="post")
+        label Create Post
+        input(type="text" name="newPost" placeholder="What's on your mind" required)
+        button(type="submit") Post
+    .posts
+      .post
+        .postOwner
+          p Hassan Ben Haj Bouih
+          p 20-10-2019
+        .postText
+          p Hi this is my first post
+        .heart
+          p ❤5
+        .reaction
+          ul
+            li
+              a(href="#") Like    
+            li
+              a(href="#") Comment
+        form(action="new/comment", method="post")
+          input(type="text" placeholder="Write a comment...")    
+          button(type="submit") Send
