@@ -5,5 +5,12 @@ module.exports = {
     } else {
       res.redirect("/");
     }
+  },
+  checkNotAuthenticated: function(req, res, next) {
+    if (req.isAuthenticated()) {
+      res.redirect("/dashboard");
+    } else {
+      next();
+    }
   }
 };
