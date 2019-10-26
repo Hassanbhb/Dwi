@@ -7,11 +7,11 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const path = require("path");
 const helmet = require("helmet");
-const pug = require("pug");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
+const methodOverride = require("method-override");
 
 //require passoprt config
 require("./config/passport")(passport);
@@ -31,6 +31,8 @@ app.use(helmet());
 app.set("view engine", "pug");
 
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(methodOverride("_method"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
