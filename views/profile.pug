@@ -1,0 +1,16 @@
+extends layouts/layout.pug
+block content
+  include partials/navbar
+  h1 profile
+  form(action="/profile?_method=PUT" method="post")
+    label(for="firstName")
+    input(type="text" name="firstName" value= firstName required)
+    label(for="lastName")
+    input(type="text" name="lastName" value= lastName required)
+    label(for="email")
+    input(type="email" name="email" value= email required)
+    label(for="newPassword")
+    input(type="password" name="newPassword" placeholder="New Password")
+    label(for="confirmPassword")
+    input(type="password" name="confirmPassword" placeholder="Confirm Password")
+    button(type="submit") Update

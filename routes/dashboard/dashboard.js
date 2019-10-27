@@ -35,13 +35,13 @@ router.post("/new/post", ensureAuthenticated, (req, res) => {
   });
 });
 
-router.put("/new/comment", (req, res) => {
+router.put("/new/comment", ensureAuthenticated, (req, res) => {
   const comment = {
     author: req.body.author,
     text: req.body.comment,
     createdAt: moment().format("l, h:mm a")
   };
-  //search for the post user commented on
+  //search for the post the user commented on
   //and add the new comment to the array of comments
   Posts.findOneAndUpdate(
     { _id: req.body.postId },
