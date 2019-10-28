@@ -13,11 +13,12 @@ router.get("/profile", ensureAuthenticated, (req, res) => {
   res.render("profile", userData);
 });
 
-//TODO:  must update the users posts too
+//TODO: split to two, so that we can update posts
+//the user wrote
 router.put("/profile", ensureAuthenticated, (req, res) => {
   // check if password and confirm password exist
   if (req.body.newPassword && req.body.confirmPassword) {
-    //check ig they are equal
+    //check if they are equal
     if (req.body.newPassword === req.body.confirmPassword) {
       //hash the new password
       bcrypt.hash(req.body.newPassword, 10, (err, hash) => {
@@ -51,16 +52,12 @@ router.put("/profile", ensureAuthenticated, (req, res) => {
     //update this users data
     Users.findByIdAndUpdate({ _id: req.user._id }, updated)
       .then(data => {
-        console.log("no password update");
         res.redirect("/profile");
       })
       .catch(err => {
         console.log(err);
       });
   }
-
-  // Users.findOneAndUpdate({ email: req.body.email }, {});
-  // res.send(req.body);
 });
 
 module.exports = router;

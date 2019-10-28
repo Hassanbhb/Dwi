@@ -8,27 +8,26 @@ block content
         input(type="text" name="newPost" placeholder="What's on your mind" required)
         button(type="submit") Post
     .posts
+      //- reverse posts to display newest at the top
       each post in posts.reverse()
         .card
           .postOwner
-            h3= post.createdBy
+            h3= `${post.author.name} ${post.author.lastName}`
             p= post.createdAt
           .postText
             p= post.body
           .heart
             p ❤ #{post.likes}
           .reaction
-            ul
-              li
-                a(href=`#`) Like 
+            button like
           .comments
-            each comment in post.comments
+            //- reverse comment array to display newest at the top
+            each comment in post.comments.reverse()
               .comment
-                h5=comment.author
+                h5=`${comment.author.name} ${comment.author.lastName}`
                 p=comment.createdAt
                 p=comment.text
           form(action="new/comment?_method=PUT", method="post")
-            input(type="hidden", name="author" value=userName)
             input(type="hidden", name="postId" value=post._id)
             input(type="text" name="comment" placeholder="Write a comment...")    
             button(type="submit") Send

@@ -6,11 +6,9 @@ router.post(
   "/login",
   passport.authenticate("local", {
     failureFlash: true,
-    failureRedirect: "/"
-  }),
-  (req, res) => {
-    res.redirect("/dashboard");
-  }
+    failureRedirect: "/",
+    successRedirect: "/dashboard"
+  })
 );
 
 module.exports = router;
