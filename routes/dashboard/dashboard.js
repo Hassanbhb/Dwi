@@ -4,7 +4,7 @@ const { ensureAuthenticated } = require("../../config/auth");
 const Posts = require("../../models/post");
 const moment = require("moment");
 
-router.get("/dashboard", ensureAuthenticated, (req, res) => {
+router.get("/", ensureAuthenticated, (req, res) => {
   // find all posts, and populate the author and the comments author
   //to keep data updated
   Posts.find({})
@@ -55,6 +55,21 @@ router.put("/new/comment", ensureAuthenticated, (req, res) => {
   )
     .then(updatedPost => {
       res.redirect("/dashboard");
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+//TODO: check if same user liked the post id so decrement
+router.put("/new/like", (req, res) => {
+  Posts.findByIdAndUpdate(
+    { _id: req.body.postId },
+    { $inc: { likes: 1 } },
+    { useFindAndModify: false, new: true }
+  )
+    .then(updatedPost => {
+      res.send("success");
     })
     .catch(err => {
       console.log(err);

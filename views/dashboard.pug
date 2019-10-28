@@ -3,7 +3,7 @@ block content
   include partials/navbar.pug
   main
     .postForm
-      form(action="new/post", method="post")
+      form(action="dashboard/new/post", method="post")
         label Create Post
         input(type="text" name="newPost" placeholder="What's on your mind" required)
         button(type="submit") Post
@@ -16,10 +16,11 @@ block content
             p= post.createdAt
           .postText
             p= post.body
-          .heart
-            p ❤ #{post.likes}
+          div
+            p ❤
+            p.heart #{post.likes}
           .reaction
-            button like
+            button.likeBtn(data-postId= post._id) like
           .comments
             //- reverse comment array to display newest at the top
             each comment in post.comments.reverse()
@@ -27,7 +28,7 @@ block content
                 h5=`${comment.author.name} ${comment.author.lastName}`
                 p=comment.createdAt
                 p=comment.text
-          form(action="new/comment?_method=PUT", method="post")
+          form(action="dashboard/new/comment?_method=PUT", method="post")
             input(type="hidden", name="postId" value=post._id)
             input(type="text" name="comment" placeholder="Write a comment...")    
             button(type="submit") Send

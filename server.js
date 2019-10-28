@@ -72,7 +72,7 @@ app.use("/", indexRouter);
 app.use("/", loginRouter);
 app.use("/", registerRouter);
 app.use("/", logoutRouter);
-app.use("/", dashboardRouter);
+app.use("/dashboard", dashboardRouter);
 app.use("/", profileRouter);
 //catch unexisting routes
 app.use(function(req, res, next) {
