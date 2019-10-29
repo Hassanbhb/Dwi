@@ -23,8 +23,8 @@ const postSchema = new Schema({
   },
   comments: [commentSchema],
   likes: {
-    type: Number,
-    default: 0
+    type: Array,
+    required: true
   },
   createdAt: {
     type: String,

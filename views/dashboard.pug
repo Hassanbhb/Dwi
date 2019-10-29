@@ -18,7 +18,7 @@ block content
             p= post.body
           div
             p ❤
-            p.heart #{post.likes}
+            p.heart #{post.likes.length}
           .reaction
             button.likeBtn(data-postId= post._id) like
           .comments

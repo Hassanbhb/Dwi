@@ -62,14 +62,28 @@ router.put("/new/comment", ensureAuthenticated, (req, res) => {
 });
 
 //TODO: check if same user liked the post id so decrement
-router.put("/new/like", (req, res) => {
-  Posts.findByIdAndUpdate(
-    { _id: req.body.postId },
-    { $inc: { likes: 1 } },
-    { useFindAndModify: false, new: true }
-  )
-    .then(updatedPost => {
-      res.send("success");
+router.put("/new/like", ensureAuthenticated, (req, res) => {
+  Posts.findById({ _id: req.body.postId }, "likes")
+    .then(post => {
+      if (post.likes.indexOf(req.user._id) === -1) {
+        //user didn't like the post before
+        Posts.findByIdAndUpdate(
+          { _id: req.body.postId },
+          { $push: { likes: req.user._id } },
+          { new: true, useFindAndModify: false }
+        ).then(updatedPost => {
+          res.send("add");
+        });
+      } else {
+        //user already liked post
+        Posts.findByIdAndUpdate(
+          { _id: req.body.postId },
+          { $pull: { likes: req.user._id } },
+          { new: true, useFindAndModify: false }
+        ).then(updatedPost => {
+          res.send("sub");
+        });
+      }
     })
     .catch(err => {
       console.log(err);
