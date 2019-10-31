@@ -4,11 +4,10 @@ block content
   //- check if error or success messages exists then display them
   if errors
     each error in errors 
-      //- chancge the li to the errorMessage partial
-      li= error
+      p= error
   if successes
     each success in successes
-      li= success
+      p= success
   .login
     form(action="/login", method="POST")
       input(type="email" name="email" placeholder="Email" required)
@@ -21,4 +20,5 @@ block content
       input(type="text", name="lastName" placeholder="Last Name" required)
       input(type="email", name="email" placeholder="Email" required)
       input(type="password", name="password" placeholder="Password" required)
+      input(type="password", name="confirmPassword" placeholder="Confirm Password" required)
       button(type="submit") Signup

@@ -31,7 +31,9 @@ router.put("/profile", ensureAuthenticated, (req, res) => {
           email: req.body.email,
           password: hash
         };
-        Users.findByIdAndUpdate({ _id: req.user._id }, updated)
+        Users.findByIdAndUpdate({ _id: req.user._id }, updated, {
+          useFindAndModify: false
+        })
           .then(data => {
             res.redirect("/profile");
           })
@@ -50,7 +52,9 @@ router.put("/profile", ensureAuthenticated, (req, res) => {
       email: req.body.email
     };
     //update this users data
-    Users.findByIdAndUpdate({ _id: req.user._id }, updated)
+    Users.findByIdAndUpdate({ _id: req.user._id }, updated, {
+      useFindAndModify: false
+    })
       .then(data => {
         res.redirect("/profile");
       })
