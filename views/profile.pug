@@ -2,6 +2,12 @@ extends layouts/layout.pug
 block content
   include partials/navbar
   h1 profile
+  if errors
+    each error in errors 
+      p= error
+  if successes
+    each success in successes
+      p= success
   form(action="/profile?_method=PUT" method="post")
     label(for="firstName")
     input(type="text" name="firstName" value= firstName required)
