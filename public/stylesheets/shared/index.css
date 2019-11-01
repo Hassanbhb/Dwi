@@ -1,0 +1,88 @@
+.container {
+  background-color: #e7f9ff;
+  background-image: linear-gradient(to right, #fff, #e7f9ff);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+}
+
+.login,
+.sign {
+  text-align: center;
+  width: 750px;
+  margin: auto;
+}
+
+/* Login form */
+.login > form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login > form > button {
+  width: 15%;
+  height: 50px;
+  background-color: #57a1ff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.login > form > input {
+  width: 40%;
+  height: 50px;
+  padding-left: 5px;
+  border: 1px #eeeeee solid;
+}
+
+/* register form */
+.regi-names,
+.regi-pswd {
+  display: flex;
+  justify-content: space-between;
+}
+
+.regi-names > input {
+  width: 45%;
+  height: 50px;
+  padding-left: 5px;
+  border: 1px #eeeeee solid;
+}
+
+.sign > form > input {
+  width: 100%;
+  height: 50px;
+  padding-left: 5px;
+  border: 1px #eeeeee solid;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.regi-pswd > input {
+  width: 45%;
+  height: 50px;
+  padding-left: 5px;
+  border: 1px #eeeeee solid;
+}
+
+.sign > form > button {
+  color: #fff;
+  background-color: #ff575a;
+  width: 140px;
+  height: 50px;
+  border: none;
+  border-radius: 3px;
+  font-size: 20px;
+  margin-top: 25px;
+  cursor: pointer;
+}

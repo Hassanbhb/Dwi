@@ -1,22 +1,27 @@
 extends layouts/layout.pug
 block content
   include partials/navbar
-  h1 profile
-  if errors
-    each error in errors 
-      p= error
-  if successes
-    each success in successes
-      p= success
-  form(action="/profile?_method=PUT" method="post")
-    label(for="firstName")
-    input(type="text" name="firstName" value= firstName required)
-    label(for="lastName")
-    input(type="text" name="lastName" value= lastName required)
-    label(for="email")
-    input(type="email" name="email" value= email required)
-    label(for="newPassword")
-    input(type="password" name="newPassword" placeholder="New Password")
-    label(for="confirmPassword")
-    input(type="password" name="confirmPassword" placeholder="Confirm Password")
-    button(type="submit") Update
+  .container
+    if errors
+      each error in errors 
+        p= error
+    if successes
+      each success in successes
+        p= success
+    form(action="/profile?_method=PUT" method="post" class="profile-form")
+      div
+        label(for="firstName") First name:
+        input(type="text" name="firstName" value= firstName required)
+      div  
+        label(for="lastName") Last name:
+        input(type="text" name="lastName" value= lastName required)
+      div
+        label(for="email") Email:
+        input(type="email" name="email" value= email required)
+      div  
+        label(for="newPassword") New password:
+        input(type="password" name="newPassword" placeholder="New Password")
+      div  
+        label(for="confirmPassword") Confirm Password:
+        input(type="password" name="confirmPassword" placeholder="Confirm Password")
+      button(type="submit") Update

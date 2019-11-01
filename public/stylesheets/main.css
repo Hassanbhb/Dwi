@@ -1,0 +1,7 @@
+@import "shared/index.css";
+@import "shared/profile.css";
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}

@@ -36,7 +36,6 @@ router.post(
       .exists({ checkFalsy: true })
   ],
   (req, res) => {
-    //TODO: validate input
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       req.flash("error", `${errors.array()[0].msg}`);
@@ -100,7 +99,6 @@ router.put(
   }
 );
 
-//TODO: check if same user liked the post id so decrement
 router.put("/new/like", ensureAuthenticated, (req, res) => {
   Posts.findById({ _id: req.body.postId }, "likes")
     .then(post => {

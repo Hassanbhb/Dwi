@@ -1,24 +1,29 @@
 extends layouts/layout.pug
 block content
-  h1 Dwi is talk
-  //- check if error or success messages exists then display them
-  if errors
-    each error in errors 
-      p= error
-  if successes
-    each success in successes
-      p= success
-  .login
-    form(action="/login", method="POST")
-      input(type="email" name="email" placeholder="Email" required)
-      input(type="password" name="password" placeholder="Password" required)
-      button(type="submit") Log in
+  .container
+    h1 Dwi is talk
+    //- check if error or success messages exists then display them
+    if errors
+      each error in errors 
+        p= error
+    if successes
+      each success in successes
+        p= success
+    .login
+      h2 Login
+      form(action="/login", method="POST")
+        input(type="email" name="email" placeholder="Email" required)
+        input(type="password" name="password" placeholder="Password" required)
+        button(type="submit") Log in
 
-  .sign
-    form(action="/register" method="POST")
-      input(type="text", name="name" placeholder="Name" required)
-      input(type="text", name="lastName" placeholder="Last Name" required)
-      input(type="email", name="email" placeholder="Email" required)
-      input(type="password", name="password" placeholder="Password" required)
-      input(type="password", name="confirmPassword" placeholder="Confirm Password" required)
-      button(type="submit") Signup
+    .sign
+      h2 Register
+      form(action="/register" method="POST")
+        div.regi-names
+          input(type="text", name="name" placeholder="Name" required)
+          input(type="text", name="lastName" placeholder="Last Name" required)
+        input(type="email", name="email" placeholder="Email" required)
+        div.regi-pswd
+          input(type="password", name="password" placeholder="Password" required)
+          input(type="password", name="confirmPassword" placeholder="Confirm Password" required)
+        button(type="submit") Signup

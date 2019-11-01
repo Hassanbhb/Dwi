@@ -1,0 +1,37 @@
+.profile-form {
+  height: 100%;
+  width: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.profile-form > div {
+  text-align: center;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.profile-form > div > label {
+  width: 30%;
+  height: 50px;
+  font-size: 20px;
+  text-align: left;
+}
+
+.profile-form > div > input {
+  width: 70%;
+}
+
+.profile-form > button {
+  color: #fff;
+  background-color: #ff6c6c;
+  width: 126px;
+  height: 50px;
+  border: none;
+  border-radius: 2px;
+  font-size: 20px;
+}
