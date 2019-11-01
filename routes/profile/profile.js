@@ -21,11 +21,11 @@ router.put(
   ensureAuthenticated,
   //validating user input
   [
-    check("firstName", "Name must be Alphanumeric")
+    check("firstName", "Name must be 2+ chars")
       .trim()
       .escape()
       .isLength({ min: 2 }),
-    check("lastName", "last name must be Alphanumeric")
+    check("lastName", "Last name must be 2+ chars")
       .trim()
       .escape()
       .isLength({ min: 2 }),

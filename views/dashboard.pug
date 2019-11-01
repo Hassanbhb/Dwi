@@ -3,6 +3,12 @@ block content
   include partials/navbar.pug
   main
     .postForm
+      if errors
+        each error in errors 
+          p= error
+      if successes
+        each success in successes
+          p= success
       form(action="dashboard/new/post", method="post")
         label Create Post
         input(type="text" name="newPost" placeholder="What's on your mind" required)
