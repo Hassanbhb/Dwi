@@ -1,6 +1,7 @@
 @import "shared/header.css";
 @import "shared/index.css";
 @import "shared/profile.css";
+@import "shared/dashboard.css";
 body {
   margin: 0;
   padding: 0;
