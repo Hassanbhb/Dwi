@@ -10,7 +10,7 @@ main {
 
 /* create Post styles */
 .postForm form {
-  width: 600px;
+  width: 60%;
   border-left: 1px var(--post-form-border-color) solid;
   border-right: 1px var(--post-form-border-color) solid;
   border-bottom: 1px var(--post-form-border-color) solid;
@@ -60,6 +60,8 @@ main {
 /* poster name and timestamp */
 .postOwner {
   padding: 5px 0px 5px 15px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .postOwner h3 {
@@ -70,6 +72,42 @@ main {
 .postOwner p {
   font-size: 11;
   margin: 0;
+}
+
+.dropdown-menu {
+  height: 30px;
+  padding: 0 15px;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu:after {
+  content: "\20DB";
+  font-size: 40px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  margin-top: 30px;
+  min-width: 160px;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-image: linear-gradient(to left, #bcf0ff, #fff);
+}
+.show-dropdown {
+  display: block;
 }
 
 /* post text */

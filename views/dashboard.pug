@@ -19,8 +19,13 @@ block content
       each post in posts.reverse()
         .card
           .postOwner
-            h3= `${post.author.name} ${post.author.lastName}`
-            p= post.createdAt
+            div
+              h3= `${post.author.name} ${post.author.lastName}`
+              p= post.createdAt
+            div.dropdown-menu 
+              .dropdown-content
+                a(href="#") Delete
+                a(href="#") Edit
           .postText
             p= post.body
           .postLikes
@@ -43,4 +48,4 @@ block content
             button(type="submit") 
               img(src="images/sendIcon.svg", alt="Send")
 block scripts
-  script(src="/javascripts/likes.js")
+  script(src="/javascripts/dashboard.js")

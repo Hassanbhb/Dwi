@@ -1,3 +1,23 @@
+//droptdown button javascript
+const dropdownBtns = document.querySelectorAll(".dropdown-menu");
+dropdownBtns.forEach(dropdownBtn => {
+  dropdownBtn.addEventListener("click", e => {
+    e.target.children[0].classList.toggle("show-dropdown");
+  });
+});
+
+window.onclick = e => {
+  if (!e.target.matches(".dropdown-menu")) {
+    const dropdowns = document.querySelectorAll(".dropdown-content");
+    dropdowns.forEach(dropdown => {
+      if (dropdown.classList.contains("show-dropdown")) {
+        dropdown.classList.remove("show-dropdown");
+      }
+    });
+  }
+};
+
+// Like button javascript
 const likeBtn = document.querySelectorAll(".likeBtn");
 const likesDisplay = document.querySelector(".heart");
 likeBtn.forEach(btn => {
