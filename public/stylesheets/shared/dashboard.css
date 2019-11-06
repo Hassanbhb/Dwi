@@ -214,7 +214,40 @@ button.likeBtn {
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
+}
+
+.modal-content h4 {
+  margin: 20px;
+  font-size: 20px;
+  display: block;
+  background-image: linear-gradient(to left, #bcf0ff, #fff);
+}
+
+.modal-content textarea {
+  display: block;
+  width: 90%;
+  resize: none;
+  height: 115px;
+  margin: 15px auto;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 2px;
+  outline: none;
+}
+
+.modal-content button {
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 40px;
+  background-color: #57a1ff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 /* The Close Button */
