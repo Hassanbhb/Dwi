@@ -1,11 +1,13 @@
-//droptdown button javascript
+//posts droptdown button javascript
 const dropdownBtns = document.querySelectorAll(".dropdown-menu");
 dropdownBtns.forEach(dropdownBtn => {
   dropdownBtn.addEventListener("click", e => {
-    e.target.children[0].classList.toggle("show-dropdown");
+    if (e.target.children[0] !== undefined) {
+      e.target.children[0].classList.toggle("show-dropdown");
+    }
   });
 });
-
+// colse drop down when user clicks on anything else
 window.onclick = e => {
   if (!e.target.matches(".dropdown-menu")) {
     const dropdowns = document.querySelectorAll(".dropdown-content");
@@ -17,7 +19,30 @@ window.onclick = e => {
   }
 };
 
-// Like button javascript
+// deleteBtn functionality
+const deleteBtns = document.querySelectorAll(".deleteBtn");
+deleteBtns.forEach(btn => {
+  btn.addEventListener("click", e => {
+    e.preventDefault();
+
+    const url = window.location.href + "/delete/post";
+    const postId = e.target.getAttribute("data-postID");
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("DELETE", url, true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhttp.onreadystatechange = function() {
+      if (xhttp.readyState == 4 && xhttp.status === 200) {
+        location.href = "/dashboard";
+      }
+    };
+
+    xhttp.send(`postId=${postId}`);
+  });
+});
+
+// Like button ajax call
 const likeBtn = document.querySelectorAll(".likeBtn");
 const likesDisplay = document.querySelector(".heart");
 likeBtn.forEach(btn => {
@@ -44,4 +69,27 @@ likeBtn.forEach(btn => {
 
     xhttp.send(`postId=${postId}`);
   });
+});
+
+// Edit modal
+const modal = document.querySelector(".editModal");
+const editModelBtn = document.querySelectorAll(".editModelBtn");
+const closeBtn = document.querySelector(".close");
+const hiddenInput = document.querySelector(".modelHiddenInput");
+const textArea = document.querySelector(".editArea");
+
+editModelBtn.forEach(btn => {
+  btn.addEventListener("click", e => {
+    e.preventDefault();
+    const postId = e.target.getAttribute("data-postID");
+    const postBody = e.target.getAttribute("data-postBody");
+    hiddenInput.value = postId;
+    textArea.value = postBody;
+
+    modal.style.display = "block";
+  });
+});
+
+closeBtn.addEventListener("click", e => {
+  modal.style.display = "none";
 });

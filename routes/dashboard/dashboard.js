@@ -5,6 +5,7 @@ const Posts = require("../../models/post");
 const moment = require("moment");
 const { check, validationResult } = require("express-validator");
 
+// Get All posts
 router.get("/", ensureAuthenticated, (req, res) => {
   // find all posts, and populate the author and the comments author
   //to keep data updated
@@ -13,10 +14,10 @@ router.get("/", ensureAuthenticated, (req, res) => {
       path: "comments.author",
       model: "User"
     })
-    .populate("author")
+    .populate("author", "_id name lastName")
     .then(posts => {
       // then render the posts
-      res.render("dashboard", { posts });
+      res.render("dashboard", { user: req.user._id, posts });
     })
     .catch(err => {
       console.log(err);
@@ -59,6 +60,20 @@ router.post(
   }
 );
 
+//delete Post
+router.delete("/delete/post", ensureAuthenticated, (req, res) => {
+  console.log(req.body);
+  Posts.findByIdAndDelete({ _id: req.body.postId })
+    .then(deletedPost => {
+      req.flash("success", "Post Deleted Successfully");
+      res.send("deleted post");
+    })
+    .catch(err => {
+      console.error(err);
+    });
+});
+
+//edit post to add a comment to it
 router.put(
   "/new/comment",
   ensureAuthenticated,
@@ -89,7 +104,7 @@ router.put(
         { new: true, useFindAndModify: false }
       )
         .then(updatedPost => {
-          req.flash("success", "comented successfully");
+          req.flash("success", "Commented successfully");
           res.redirect("/dashboard");
         })
         .catch(err => {
@@ -99,6 +114,7 @@ router.put(
   }
 );
 
+//edit post to add a like to it
 router.put("/new/like", ensureAuthenticated, (req, res) => {
   Posts.findById({ _id: req.body.postId }, "likes")
     .then(post => {
@@ -125,6 +141,22 @@ router.put("/new/like", ensureAuthenticated, (req, res) => {
     .catch(err => {
       console.log(err);
     });
+});
+
+// edit posts body
+router.put("/edit/post", (req, res) => {
+  console.log(req.body.postId);
+  console.log(req.body.editedText);
+  // TODO: validate input
+  Posts.findByIdAndUpdate(
+    { _id: req.body.postId },
+    { body: req.body.editedText },
+    { new: true }
+  )
+    .then(editedPost => {
+      res.redirect("/dashboard");
+    })
+    .catch(err => console.error(err));
 });
 
 module.exports = router;

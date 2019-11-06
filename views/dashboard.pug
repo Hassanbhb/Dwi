@@ -22,10 +22,11 @@ block content
             div
               h3= `${post.author.name} ${post.author.lastName}`
               p= post.createdAt
-            div.dropdown-menu 
-              .dropdown-content
-                a(href="#") Delete
-                a(href="#") Edit
+            if(JSON.stringify(user) == JSON.stringify(post.author._id))
+              div.dropdown-menu 
+                .dropdown-content
+                  a(href="#" class='deleteBtn' data-postId= post._id) Delete
+                  a(href="#/" class='editModelBtn' data-postId= post._id data-postBody= post.body) Edit
           .postText
             p= post.body
           .postLikes
@@ -43,9 +44,17 @@ block content
                 .commentText
                   p=comment.text
           form(action="dashboard/new/comment?_method=PUT", method="post")
-            input(type="hidden", name="postId" value=post._id)
-            input(type="text" name="comment" placeholder="Write a comment...")    
+            input(type="hidden", name="postId" value=post._id required)
+            input(type="text" name="comment" placeholder="Write a comment..." required)    
             button(type="submit") 
               img(src="images/sendIcon.svg", alt="Send")
+    .editModal
+      .modal-content
+        span.close &times;
+        h4 Edit post
+        form(action="dashboard/edit/post?_method=PUT", method="post")
+          input(type="hidden", name="postId" class="modelHiddenInput")
+          textarea(name="editedText" class="editArea" required)
+          button(type="submit" class="editBtn") Send
 block scripts
   script(src="/javascripts/dashboard.js")
