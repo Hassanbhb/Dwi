@@ -31,7 +31,8 @@ block content
             p= post.body
           .postLikes
             img(src="images/heartIcon.svg", alt="heart")
-            p.heart #{post.likes.length}
+            - var postId = post._id;
+            p(class='heart-' + postId) #{post.likes.length}
           .reaction
             button.likeBtn(data-postId= post._id) like
           .comments

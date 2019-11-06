@@ -143,17 +143,35 @@ router.put("/new/like", ensureAuthenticated, (req, res) => {
 });
 
 // edit posts body
-router.put("/edit/post", ensureAuthenticated, (req, res) => {
-  // TODO: validate input
-  Posts.findByIdAndUpdate(
-    { _id: req.body.postId },
-    { body: req.body.editedText },
-    { new: true }
-  )
-    .then(editedPost => {
+router.put(
+  "/edit/post",
+  ensureAuthenticated,
+  [
+    check("editedText", "field must not be empty")
+      .not()
+      .isEmpty()
+      .trim()
+      .escape()
+      .exists({ checkFalsy: true })
+  ],
+  (req, res) => {
+    // TODO: validate input
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      req.flash("error", `${errors.array()[0].msg}`);
       res.redirect("/dashboard");
-    })
-    .catch(err => console.error(err));
-});
+    } else {
+      Posts.findByIdAndUpdate(
+        { _id: req.body.postId },
+        { body: req.body.editedText },
+        { new: true, useFindAndModify: false }
+      )
+        .then(editedPost => {
+          res.redirect("/dashboard");
+        })
+        .catch(err => console.error(err));
+    }
+  }
+);
 
 module.exports = router;

@@ -44,12 +44,11 @@ deleteBtns.forEach(btn => {
 
 // Like button ajax call
 const likeBtn = document.querySelectorAll(".likeBtn");
-const likesDisplay = document.querySelector(".heart");
 likeBtn.forEach(btn => {
   btn.addEventListener("click", e => {
     const url = window.location.href + "/new/like";
     const postId = e.target.getAttribute("data-postID");
-
+    const likesDisplay = document.querySelector(".heart-" + postId);
     const xhttp = new XMLHttpRequest();
     xhttp.open("PUT", url, true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
