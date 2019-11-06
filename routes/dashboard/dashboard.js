@@ -62,7 +62,6 @@ router.post(
 
 //delete Post
 router.delete("/delete/post", ensureAuthenticated, (req, res) => {
-  console.log(req.body);
   Posts.findByIdAndDelete({ _id: req.body.postId })
     .then(deletedPost => {
       req.flash("success", "Post Deleted Successfully");
@@ -144,9 +143,7 @@ router.put("/new/like", ensureAuthenticated, (req, res) => {
 });
 
 // edit posts body
-router.put("/edit/post", (req, res) => {
-  console.log(req.body.postId);
-  console.log(req.body.editedText);
+router.put("/edit/post", ensureAuthenticated, (req, res) => {
   // TODO: validate input
   Posts.findByIdAndUpdate(
     { _id: req.body.postId },
