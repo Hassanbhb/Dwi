@@ -24,6 +24,7 @@
 
 .profile-form > div > input {
   width: 70%;
+  padding-left: 15px;
 }
 
 .profile-form > button {
@@ -34,4 +35,24 @@
   border: none;
   border-radius: 2px;
   font-size: 20px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 425px) {
+  .profile-form {
+    width: 95%;
+  }
+
+  .profile-form > div {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .profile-form > div > label {
+    width: 100%;
+  }
+  .profile-form > div > input {
+    width: 100%;
+    padding: 15px;
+  }
 }

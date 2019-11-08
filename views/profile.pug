@@ -4,10 +4,10 @@ block content
   .container
     if errors
       each error in errors 
-        p= error
+        p.errorMsg= error
     if successes
       each success in successes
-        p= success
+        p.successMsg= success
     form(action="/profile?_method=PUT" method="post" class="profile-form")
       div
         label(for="firstName") First name:

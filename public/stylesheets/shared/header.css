@@ -29,3 +29,9 @@ nav a:hover {
   background-color: #e2fbff5e;
   color: #668b98;
 }
+
+@media only screen and (max-width: 425px) {
+  nav ul {
+    width: 85%;
+  }
+}

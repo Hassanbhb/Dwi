@@ -5,10 +5,10 @@ block content
     .postForm
       if errors
         each error in errors 
-          p= error
+          p.errorMsg= error
       if successes
         each success in successes
-          p= success
+          p.successMsg= success
       form(action="dashboard/new/post", method="post")
         label Create Post
         textarea(name="newPost", placeHolder="What's on your mind?", required )

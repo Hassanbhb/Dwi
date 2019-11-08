@@ -5,5 +5,30 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
+}
+
+.errorMsg,
+.successMsg {
+  width: 50%;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 15px auto;
+}
+
+.errorMsg {
+  color: #a94442;
+  background-color: #f2dede;
+}
+.successMsg {
+  color: #006a92;
+  background-color: #d9edf7;
+}
+
+@media only screen and (max-width: 425px) {
+  .errorMsg,
+  .successMsg {
+    width: 90%;
+  }
 }
