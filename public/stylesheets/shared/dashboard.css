@@ -152,6 +152,10 @@ button.likeBtn {
 .comments {
   margin: 15px 15px 0 15px;
 }
+.commentOwner {
+  display: flex;
+  justify-content: space-between;
+}
 .comment h5 {
   font-size: 16px;
   margin: 0;

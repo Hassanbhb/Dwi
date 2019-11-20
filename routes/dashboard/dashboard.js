@@ -174,4 +174,25 @@ router.put(
   }
 );
 
+//delete a comment from post
+router.put("/delete/comment", ensureAuthenticated, (req, res) => {
+  const data = req.body.postId.split(" ");
+  const postId = data[0];
+  const commentId = data[1];
+  console.log(commentId);
+  Posts.findByIdAndUpdate(
+    { _id: postId },
+    { $pull: { comments: { _id: commentId } } },
+    { new: true, useFindAndModify: false }
+  )
+    .then(editedPost => {
+      console.log(editedPost);
+      req.flash("success", "Comment deleted successfully");
+      res.send("deleted comment");
+    })
+    .catch(err => {
+      console.error(err);
+    });
+});
+
 module.exports = router;

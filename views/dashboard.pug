@@ -25,7 +25,7 @@ block content
             if(JSON.stringify(user) == JSON.stringify(post.author._id))
               div.dropdown-menu 
                 .dropdown-content
-                  a(href="#" class='deleteBtn' data-postId= post._id) Delete
+                  a(href="#" class='deleteBtn' data-post-Id= post._id) Delete
                   a(href="#/" class='editModelBtn' data-postId= post._id data-postBody= post.body) Edit
           .postText
             p= post.body
@@ -40,8 +40,13 @@ block content
             each comment in post.comments.reverse()
               .comment
                 .commentOwner
-                  h5=`${comment.author.name} ${comment.author.lastName}`
-                  p=comment.createdAt
+                  div
+                    h5=`${comment.author.name} ${comment.author.lastName}`
+                    p=comment.createdAt
+                  if(JSON.stringify(user) == JSON.stringify(comment.author._id))
+                    div.dropdown-menu 
+                      .dropdown-content
+                        a(href="#" class='deleteBtn' data-Id= `${post._id} ${comment._id}`) Delete
                 .commentText
                   p=comment.text
           form(action="dashboard/new/comment?_method=PUT", method="post")

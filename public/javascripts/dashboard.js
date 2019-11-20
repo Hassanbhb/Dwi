@@ -24,12 +24,21 @@ const deleteBtns = document.querySelectorAll(".deleteBtn");
 deleteBtns.forEach(btn => {
   btn.addEventListener("click", e => {
     e.preventDefault();
-
-    const url = window.location.href + "/delete/post";
-    const postId = e.target.getAttribute("data-postID");
+    let Id;
+    let url;
+    let method;
+    if (e.target.getAttribute("data-post-Id")) {
+      url = window.location.href + "/delete/post";
+      Id = e.target.getAttribute("data-post-Id");
+      method = "DELETE";
+    } else {
+      url = window.location.href + "/delete/comment";
+      Id = e.target.getAttribute("data-Id");
+      method = "PUT";
+    }
 
     const xhttp = new XMLHttpRequest();
-    xhttp.open("DELETE", url, true);
+    xhttp.open(method, url, true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhttp.onreadystatechange = function() {
@@ -38,7 +47,7 @@ deleteBtns.forEach(btn => {
       }
     };
 
-    xhttp.send(`postId=${postId}`);
+    xhttp.send(`postId=${Id}`);
   });
 });
 
