@@ -4,7 +4,7 @@ Dwi is a simple application where you can post for others to see.
 
 ## Getting started
 
-Make sure you have nodejs/npm already installed locally.
+Make sure you have nodejs/npm/mongodb already installed locally.
 
 ```terminal
 git Clone https://github.com/Hassanbhb/Dwi.git Dwi
