@@ -10,7 +10,7 @@ const helmet = require("helmet");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 
@@ -52,7 +52,7 @@ app.use(
   session({
     cookie: { maxAge: 60000 },
     secret: process.env.SECRET,
-    store: new MongoStore({ mongooseConnection: db }),
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
     resave: false,
     saveUninitialized: true
   })
