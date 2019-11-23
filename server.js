@@ -10,6 +10,7 @@ const helmet = require("helmet");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 
@@ -38,11 +39,20 @@ app.use(methodOverride("_method"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+mongoose.connect(process.env.DATABASE_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+const db = mongoose.connection;
+db.on("error", error => console.log(error));
+db.once("open", error => console.log("connected to db..."));
+
 //session
 app.use(
   session({
     cookie: { maxAge: 60000 },
     secret: process.env.SECRET,
+    store: new MongoStore({ mongooseConnection: db }),
     resave: false,
     saveUninitialized: true
   })
@@ -59,14 +69,6 @@ app.use((req, res, next) => {
 //initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
-
-mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-const db = mongoose.connection;
-db.on("error", error => console.log(error));
-db.once("open", error => console.log("connected to db..."));
 
 //use routes
 app.use("/", indexRouter);
