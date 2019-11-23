@@ -1,6 +1,7 @@
 # Dwi
 
 Dwi is a simple application where you can post for others to see.
+for a live demo [click here](https://dwi-talk.herokuapp.com/)
 
 ## Getting started
 
