@@ -20,6 +20,7 @@ router.post(
       .not()
       .isEmpty()
       .isEmail(),
+    // TODO: fix password allows only numbers
     check("password", "Password must have 5+ chars and at least one number")
       .not()
       .isEmpty()

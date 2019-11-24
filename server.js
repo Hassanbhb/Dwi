@@ -50,7 +50,8 @@ db.once("open", error => console.log("connected to db..."));
 //session
 app.use(
   session({
-    cookie: { maxAge: 60000 },
+    // session expires in 12 houres
+    cookie: { maxAge: 60000 * 60 * 12 },
     secret: process.env.SECRET,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
     resave: false,
