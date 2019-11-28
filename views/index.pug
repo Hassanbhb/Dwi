@@ -1,29 +1,14 @@
 extends layouts/layout.pug
 block content
   .container
-    h1 Dwi is talk
-    //- check if error or success messages exists then display them
-    if errors
-      each error in errors 
-        p.errorMsg= error
-    if successes
-      each success in successes
-        p.successMsg= success
-    .login
-      h2 Login
-      form(action="/login", method="POST")
-        input(type="email" name="email" placeholder="Email" required)
-        input(type="password" name="password" placeholder="Password" required)
-        button(type="submit") Log in
-
-    .sign
-      h2 Register
-      form(action="/register" method="POST")
-        div.regi-names
-          input(type="text", name="name" placeholder="Name" required)
-          input(type="text", name="lastName" placeholder="Last Name" required)
-        input(type="email", name="email" placeholder="Email" required)
-        div.regi-pswd
-          input(type="password", name="password" placeholder="Password" required)
-          input(type="password", name="confirmPassword" placeholder="Confirm Password" required)
-        button(type="submit") Signup
+    header.home-header
+      nav.home-nav
+        ul
+          li.logo Dwi
+          li.signup
+            a(href="#") Signup 
+          li.login 
+            a(href="#") Login
+    div
+      p.home-text Dwi Lets you write and share with everyone
+      img(src="images/home-post.svg", alt="svg icon", class="home-svg")

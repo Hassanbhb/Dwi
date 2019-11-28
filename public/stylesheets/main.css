@@ -1,13 +1,16 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto|Satisfy&display=swap");
 @import "shared/header.css";
 @import "shared/index.css";
 @import "shared/profile.css";
 @import "shared/dashboard.css";
-body {
+* {
   margin: 0;
   padding: 0;
+}
+/* body {
   height: 100vh;
   width: 100vw;
-}
+} */
 
 .errorMsg,
 .successMsg {
