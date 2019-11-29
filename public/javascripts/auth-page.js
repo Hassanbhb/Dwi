@@ -4,11 +4,17 @@ const login_btn = document.querySelector(".login-btn");
 const login_form = document.querySelector(".login-form");
 
 signUp_btn.addEventListener("click", e => {
+  e.target.classList.add("active");
+  login_btn.classList.remove("active");
   signUp_form.classList.remove("hide");
   login_form.classList.add("hide");
 });
 
 login_btn.addEventListener("click", e => {
+  // btn background
+  e.target.classList.add("active");
+  signUp_btn.classList.remove("active");
+  // form display
   signUp_form.classList.add("hide");
   login_form.classList.remove("hide");
 });

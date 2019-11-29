@@ -1,4 +1,4 @@
-.container {
+.home-container {
   background-color: #e7f9ff;
   background: linear-gradient(180.03deg, #ffffff 0.01%, #d9edff 156.94%);
   height: 100vh;
@@ -90,7 +90,7 @@
 
 /* for desktop */
 @media only screen and (min-width: 992px) {
-  .container {
+  .home-container {
     background: linear-gradient(239.21deg, #ffffff 29.23%, #d9edff 116.86%);
   }
   header {
@@ -106,7 +106,7 @@
   .login {
     flex-grow: 1;
   }
-  .container div {
+  .home-container div {
     display: flex;
     align-items: center;
     height: 90%;
