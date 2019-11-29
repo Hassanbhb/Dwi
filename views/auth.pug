@@ -1,0 +1,23 @@
+extends layouts/layout.pug
+block content
+  .container
+    div
+      img(src="images/auth-svg.svg", alt="authentication image" class="auth-svg")
+    .form-group
+      div.form-header
+        p.form-logo Dwi
+        div
+          a(href="#" class="signup-btn") Signup
+          a(href="#" class="login-btn") Login
+      form(action="/login", method="post" class="login-form")
+        input(type="email", placeholder="Email (example@example.com)")
+        input(type="password", placeholder="Password (6+ charachters)")
+        input(type="submit", value="Login" class="auth-btn") 
+      form(action="/register", method="post" class="signup-form hide")
+        input(type="text", placeholder="Username")
+        input(type="email", placeholder="Email (example@example.com)")
+        input(type="password", placeholder="Password (6+ charachters)")
+        input(type="password", placeholder="Confirm Password")
+        input(type="submit", value="Create your acount" class="auth-btn")
+block scripts
+  script(src="javascripts/auth-page.js")

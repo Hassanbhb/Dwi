@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto|Satisfy&display=swap");
 @import "shared/header.css";
 @import "shared/index.css";
+@import "shared/auth.css";
 @import "shared/profile.css";
 @import "shared/dashboard.css";
 * {
