@@ -1,3 +1,7 @@
+:root {
+  --main-fonts: Roboto, sans-serif;
+  --logo-fants: Satisfy, sans-serif;
+}
 .home-container {
   background-color: #e7f9ff;
   background: linear-gradient(180.03deg, #ffffff 0.01%, #d9edff 156.94%);
@@ -29,7 +33,7 @@
 }
 
 .logo {
-  font-family: Satisfy, sans-serif;
+  font-family: var(--logo-fants);
   font-size: 48px;
   color: #0047ff;
   flex-grow: 1;
@@ -42,7 +46,7 @@
 }
 
 .signup a {
-  font-family: Roboto;
+  font-family: var(--main-fonts);
   font-weight: bold;
   font-size: 18px;
   color: #fff;
@@ -53,14 +57,14 @@
 }
 
 .login a {
-  font-family: Roboto;
+  font-family: var(--main-fonts);
   font-size: 18px;
   color: #000000;
   height: 100%;
 }
 
 .home-text {
-  font-family: Roboto;
+  font-family: var(--main-fonts);
   font-size: 25px;
   text-align: center;
   margin-top: 10%;

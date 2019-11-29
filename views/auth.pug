@@ -5,10 +5,10 @@ block content
       img(src="images/auth-svg.svg", alt="authentication image" class="auth-svg")
     .form-group
       div.form-header
-        p.form-logo Dwi
+        a(href="/" class="form-logo") Dwi
         div
-          a(href="#" class="signup-btn") Signup
-          a(href="#" class="login-btn active") Login
+          P(class="signup-btn") Signup
+          P(class="login-btn active") Login
       form(action="/login", method="post" class="login-form")
         input(type="email", placeholder="Email (example@example.com)")
         input(type="password", placeholder="Password (6+ charachters)")
