@@ -18,22 +18,14 @@ module.exports = function(passport) {
             return done(err);
           }
           if (!user) {
-            return done(
-              null,
-              false,
-              req.flash("error", "Email or password is incorrect")
-            );
+            return done(null, false);
           }
           //compare passwords
           bcrypt.compare(password, user.password, (err, res) => {
             if (err) throw err;
             //if don't match send error
             if (!res) {
-              return done(
-                null,
-                false,
-                req.flash("error", "Email or password is incorrect")
-              );
+              return done(null, false);
             }
             return done(null, user);
           });

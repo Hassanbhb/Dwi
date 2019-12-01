@@ -38,7 +38,7 @@
 .form-header div p {
   text-decoration: none;
   font-family: Roboto;
-  color: #000;
+  color: rgb(141, 141, 141);
   height: 100%;
   display: flex;
   align-items: center;
@@ -47,11 +47,7 @@
   cursor: pointer;
 }
 .form-header div p:hover {
-  background: linear-gradient(
-    180deg,
-    rgba(226, 241, 255, 0) 77.6%,
-    #e2f1ff 100%
-  );
+  color: #000;
 }
 /* form */
 
@@ -82,12 +78,8 @@ form input {
 .hide {
   display: none;
 }
-.active {
-  background: linear-gradient(
-    180deg,
-    rgba(226, 241, 255, 0) 77.6%,
-    #e2f1ff 100%
-  );
+.form-header div .active {
+  color: #000;
 }
 /* tablets */
 @media only screen and (min-width: 768px) {

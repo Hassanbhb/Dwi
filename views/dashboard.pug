@@ -3,12 +3,6 @@ block content
   include partials/navbar.pug
   main
     .postForm
-      if errors
-        each error in errors 
-          p.errorMsg= error
-      if successes
-        each success in successes
-          p.successMsg= success
       form(action="dashboard/new/post", method="post")
         label Create Post
         textarea(name="newPost", placeHolder="What's on your mind?", required )
@@ -56,7 +50,7 @@ block content
               img(src="images/sendIcon.svg", alt="Send")
     .editModal
       .modal-content
-        span.close &times;
+        span.close-modal &times;
         h4 Edit post
         form(action="dashboard/edit/post?_method=PUT", method="post")
           input(type="hidden", name="postId" class="modelHiddenInput")

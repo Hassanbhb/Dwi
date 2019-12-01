@@ -82,7 +82,7 @@ likeBtn.forEach(btn => {
 // Edit modal
 const modal = document.querySelector(".editModal");
 const editModelBtn = document.querySelectorAll(".editModelBtn");
-const closeBtn = document.querySelector(".close");
+const closeBtn = document.querySelector(".close-modal");
 const hiddenInput = document.querySelector(".modelHiddenInput");
 const textArea = document.querySelector(".editArea");
 
