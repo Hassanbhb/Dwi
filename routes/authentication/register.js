@@ -8,66 +8,90 @@ router.post(
   "/register",
   //validating user input
   [
-    check("name", "Name must be Alphanumeric")
-      .trim()
-      .escape()
-      .isLength({ min: 2 }),
-    check("lastName", "last name must be Alphanumeric")
-      .trim()
-      .escape()
-      .isLength({ min: 2 }),
+    check(
+      "username",
+      "Must be 4 to 21 chars | first char is alpahbetic | can have - and _"
+    )
+      .not()
+      .isEmpty()
+      .isLength({ min: 4, max: 21 })
+      .matches(/[a-zA-Z][a-zA-Z0-9-_]{3,20}/),
     check("email", "Please enter a valid email")
       .not()
       .isEmpty()
       .isEmail(),
-    // TODO: fix password allows only numbers
-    check("password", "Password must have 5+ chars and at least one number")
+    check("password", "4+ characters | 1+ digit or special char!")
       .not()
       .isEmpty()
-      .isLength({ min: 5 })
-      .matches(/\d/),
-    check("confirmPassword", "Passwords don't match").custom(
-      (value, { req }) => value === req.body.password
-    )
+      .isLength({ min: 4 })
+      .matches(
+        /(?=[#$-/:-?{-~!"^_`\[\]a-zA-Z]*([0-9#$-/:-?{-~!"^_`\[\]]))(?=[#$-/:-?{-~!"^_`\[\]a-zA-Z0-9]*[a-zA-Z])[#$-/:-?{-~!"^_`\[\]a-zA-Z0-9]{4,}/
+      ),
+    check("confirmPassword", {
+      title: "Passwords do not match!",
+      body: "Please confirm your password."
+    }).custom((value, { req }) => value === req.body.password)
   ],
   (req, res) => {
     const errors = validationResult(req);
     //if validation found errors then display them to user
     if (!errors.isEmpty()) {
-      req.flash("error", `${errors.array()[0].msg}`);
-      res.redirect("/");
+      res.send({ error: errors.array()[0].msg });
     } else {
-      //check if user already exists
-      User.findOne({ email: req.body.email }, (err, user) => {
-        if (err) console.log(err);
-        //if user with this email exists
-        if (user) {
-          // return an error
-          req.flash("error", "Email already exists!");
-          res.redirect("/");
-        } else {
-          //TODO: validate input
-          const newUser = {
-            name: req.body.name,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            password: req.body.password
-          };
-          //hash password
-          bcrypt.hash(req.body.password, 10, (err, hash) => {
-            newUser.password = hash;
-            const user = new User(newUser);
-            user.save(err => {
-              if (err) {
-                req.flash("error", "An Error happened, please try again!");
-                res.redirect("/");
-              }
-              req.flash("success", "success, you can login now");
-              res.redirect("/");
+      //check if username or email already exists
+      User.findOne(
+        { $or: [{ email: req.body.email }, { username: req.body.username }] },
+        (err, user) => {
+          if (err) console.log(err);
+          //if user with this email exists
+          if (user) {
+            // return error if user has the same email or the same username
+            if (user.email === req.body.email) {
+              res.send({
+                error: {
+                  title: "Email already exists!",
+                  body: "Please login or use a new email"
+                }
+              });
+            } else if (user.username === req.body.username) {
+              res.send({
+                error: {
+                  title: "Username already exists!",
+                  body: "Please try again."
+                }
+              });
+            }
+          } else {
+            //TODO: validate input
+            const newUser = {
+              username: req.body.username,
+              email: req.body.email,
+              password: req.body.password
+            };
+            //hash password
+            bcrypt.hash(req.body.password, 10, (err, hash) => {
+              newUser.password = hash;
+              const user = new User(newUser);
+              user.save(err => {
+                if (err) {
+                  res.send({
+                    error: {
+                      title: "Error!",
+                      body: "please try again!"
+                    }
+                  });
+                }
+                res.send({
+                  success: {
+                    title: "Success",
+                    body: "You can login now 👌"
+                  }
+                });
+              });
             });
-          });
+          }
         }
-      });
+      );
     }
   }
 );

@@ -43,8 +43,10 @@
   background: linear-gradient(to right, #ef473a, #cb2d3e);
 }
 .message-success {
-  color: #feffff;
-  background-color: #27b7ff;
+  color: #ffffff;
+  background: #56ccf2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #56ccf2, #2f80ed);
+  background: linear-gradient(to right, #56ccf2, #2f80ed);
 }
 
 .hide-message {
