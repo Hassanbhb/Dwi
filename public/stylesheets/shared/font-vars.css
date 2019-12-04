@@ -1,0 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto|Satisfy&display=swap");
+:root {
+  --main-font: Roboto, sans-serif;
+  --logo-font: Satisfy, sans-serif;
+}

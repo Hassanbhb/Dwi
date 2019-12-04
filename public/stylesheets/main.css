@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto|Satisfy&display=swap");
+@import "shared/font-vars.css";
 @import "shared/header.css";
 @import "shared/index.css";
 @import "shared/auth.css";
@@ -8,10 +8,6 @@
   margin: 0;
   padding: 0;
 }
-/* body {
-  height: 100vh;
-  width: 100vw;
-} */
 
 .message {
   position: fixed;
@@ -27,7 +23,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-family: Roboto sans-serif;
+  font-family: var(--main-font);
   transition: 0.5s ease;
 }
 

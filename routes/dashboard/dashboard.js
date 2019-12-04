@@ -14,10 +14,17 @@ router.get("/", ensureAuthenticated, (req, res) => {
       path: "comments.author",
       model: "User"
     })
-    .populate("author", "_id name lastName")
+    .populate("author", "_id username")
     .then(posts => {
       // then render the posts
-      res.render("dashboard", { user: req.user._id, posts });
+      res.render("dashboard", {
+        user: {
+          _id: req.user._id,
+          username: req.user.username,
+          isAdmin: req.user.isAdmin
+        },
+        posts
+      });
     })
     .catch(err => {
       console.log(err);

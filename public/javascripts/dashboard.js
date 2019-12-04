@@ -7,8 +7,11 @@ dropdownBtns.forEach(dropdownBtn => {
     }
   });
 });
-// colse drop down when user clicks on anything else
+// colse dropdown/mobile menu when user clicks on anything else
+const main_header = document.querySelector(".main-header");
+const nav_btn = document.querySelector(".nav-toggle");
 window.onclick = e => {
+  // for posts drop down
   if (!e.target.matches(".dropdown-menu")) {
     const dropdowns = document.querySelectorAll(".dropdown-content");
     dropdowns.forEach(dropdown => {
@@ -16,6 +19,10 @@ window.onclick = e => {
         dropdown.classList.remove("show-dropdown");
       }
     });
+  }
+  // for mobile menu
+  if (!e.target.matches(".main-header") && !e.target.matches(".nav-toggle")) {
+    main_header.classList.remove("active");
   }
 };
 
@@ -100,4 +107,9 @@ editModelBtn.forEach(btn => {
 
 closeBtn.addEventListener("click", e => {
   modal.style.display = "none";
+});
+
+// mobile menu display
+nav_btn.addEventListener("click", e => {
+  main_header.classList.toggle("active");
 });

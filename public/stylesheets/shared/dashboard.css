@@ -3,80 +3,67 @@
 }
 
 main {
-  width: 85%;
-  margin: 0 auto;
-  margin-top: 40px;
+  background-color: #f8fcff;
 }
 
-/* create Post styles */
+.postForm {
+  height: 140px;
+  background-color: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .postForm form {
-  width: 60%;
-  border-left: 1px var(--post-form-border-color) solid;
-  border-right: 1px var(--post-form-border-color) solid;
-  border-bottom: 1px var(--post-form-border-color) solid;
-  border-radius: 3px;
-  margin: 0 auto;
-}
-
-.postForm form label {
-  margin-left: 20px;
-  font-size: 20px;
-  display: block;
-  background-image: linear-gradient(to left, #bcf0ff, #fff);
+  width: 80%;
+  position: relative;
 }
 
 .postForm form textarea {
-  display: block;
-  width: 90%;
+  height: 78px;
+  font-family: var(--main-font);
+  padding: 5px 50px 5px 15px;
+  border-radius: 15px;
   resize: none;
-  height: 115px;
-  margin: 15px auto;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-radius: 2px;
   outline: none;
+  border: 1px solid var(--post-form-border-color);
 }
 
 .postForm form button {
-  display: block;
-  width: 100px;
-  height: 48;
+  width: 50px;
   border: none;
-  cursor: pointer;
-  background-color: #fff;
-  margin: 0 auto;
+  background-color: transparent;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Post cards styles */
 .card {
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 10px;
-  border: 1px solid #eeeeee;
-  box-shadow: 0px 0px 9px #eeeeee;
+  border-top: 1px solid var(--post-form-border-color);
+  border-bottom: 1px solid var(--post-form-border-color);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
+  margin-top: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: var(--main-font);
+  background-color: #fff;
 }
 
 /* poster name and timestamp */
 .postOwner {
-  padding: 5px 0px 5px 15px;
+  padding: 5px 0px 5px 0px;
   display: flex;
   justify-content: space-between;
 }
 
-.postOwner h3 {
-  font-size: 18;
-  margin: 0;
-}
-
 .postOwner p {
   font-size: 11;
-  margin: 0;
 }
 
 .dropdown-menu {
   height: 30px;
-  padding: 0 15px;
   cursor: pointer;
   position: relative;
   display: inline-block;
@@ -113,24 +100,27 @@ main {
 /* post text */
 
 .postText {
-  margin: 10px 15px;
+  margin: 10px 10px 10px 0px;
 }
 
 .postText p {
   font-size: 20;
+  overflow-wrap: break-word;
 }
 
 /* post likes */
 .postLikes {
   display: flex;
   align-items: center;
-  padding-left: 25px;
   margin-bottom: 5px;
 }
 
 .postLikes p {
-  padding-left: 5px;
-  margin: 0;
+  margin-left: 5px;
+}
+
+.postLikes img {
+  width: 20px;
 }
 
 /* like btn */
@@ -148,10 +138,7 @@ button.likeBtn {
   border-bottom: 1px var(--post-form-border-color) solid;
 }
 
-/* comment form */
-.comments {
-  margin: 15px 15px 0 15px;
-}
+/* comments styles */
 .commentOwner {
   display: flex;
   justify-content: space-between;
@@ -172,18 +159,16 @@ button.likeBtn {
   font-size: 16px;
 }
 
+/* comment form */
 .card form {
   width: 100%;
   height: 60px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-top: 15px;
+  position: relative;
 }
 
 .card form input {
-  width: 90%;
-  height: 50px;
+  margin: 0;
   border: 1px #000 solid;
   border-radius: 25px;
   padding: 0 15px;
@@ -191,11 +176,13 @@ button.likeBtn {
 }
 
 .card form button {
-  margin-left: -40px;
-  padding: 10px 5px;
+  position: absolute;
+  height: 48px;
+  width: 48px;
+  right: 0;
   border: none;
   cursor: pointer;
-  background-color: #fff;
+  background-color: transparent;
 }
 
 /* Edir modal css */
@@ -267,25 +254,4 @@ button.likeBtn {
   color: black;
   text-decoration: none;
   cursor: pointer;
-}
-
-@media only screen and (max-width: 425px) {
-  .postForm > form {
-    width: 95%;
-  }
-
-  .card {
-    width: 95%;
-  }
-
-  .dropdown-content {
-    right: 0;
-  }
-
-  .modal-content {
-    width: 85%;
-  }
-  .modal-content button {
-    width: 35%;
-  }
 }

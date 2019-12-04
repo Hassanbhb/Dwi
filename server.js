@@ -5,8 +5,13 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const express = require("express");
-const path = require("path");
 const helmet = require("helmet");
+
+const app = express();
+
+app.use(helmet());
+
+const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
@@ -24,10 +29,6 @@ const registerRouter = require("./routes/authentication/register");
 const logoutRouter = require("./routes/authentication/logout");
 const dashboardRouter = require("./routes/dashboard/dashboard");
 const profileRouter = require("./routes/profile/profile");
-
-const app = express();
-
-app.use(helmet());
 
 //set template engine
 app.set("view engine", "pug");

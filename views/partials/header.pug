@@ -1,0 +1,23 @@
+mixin header(username, isAdmin)
+  .main-header
+    .main-nav
+      .nav-logo
+        h4 Dwi
+      .user
+        img(src=`https://ui-avatars.com/api/?name=${username}&rounded=true`, alt="userImage")
+        p= username
+      ul
+        li
+          a(href="/dashboard") 
+            span Home
+        li
+          a(href="/profile") 
+            span Profile
+        li
+          a(href="/logout") 
+            span Logout
+        if isAdmin
+          li 
+            a(href="#") 
+              span Controle
+  img(class="nav-toggle" src="images/hamburger-icon.svg", alt="mobile-menu")  

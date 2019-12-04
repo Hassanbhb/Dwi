@@ -38,7 +38,7 @@ router.post(
     if (!errors.isEmpty()) {
       res.send({ error: errors.array()[0].msg });
     } else {
-      //check if username or email already exists
+      //check if a user has the same username or email
       User.findOne(
         { $or: [{ email: req.body.email }, { username: req.body.username }] },
         (err, user) => {

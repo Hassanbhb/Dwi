@@ -1,13 +1,7 @@
 extends layouts/layout.pug
 block content
-  include partials/navbar
+  include partials/header
   .container
-    if errors
-      each error in errors 
-        p.errorMsg= error
-    if successes
-      each success in successes
-        p.successMsg= success
     form(action="/profile?_method=PUT" method="post" class="profile-form")
       div
         label(for="firstName") First name:
