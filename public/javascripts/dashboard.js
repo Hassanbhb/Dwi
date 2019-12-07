@@ -1,10 +1,8 @@
 //posts droptdown button javascript
-const dropdownBtns = document.querySelectorAll(".dropdown-menu");
+const dropdownBtns = document.querySelectorAll(".dotsMenu");
 dropdownBtns.forEach(dropdownBtn => {
   dropdownBtn.addEventListener("click", e => {
-    if (e.target.children[0] !== undefined) {
-      e.target.children[0].classList.toggle("show-dropdown");
-    }
+    dropdownBtn.nextSibling.classList.add("show-dropdown");
   });
 });
 // colse dropdown/mobile menu when user clicks on anything else
@@ -12,7 +10,7 @@ const main_header = document.querySelector(".main-header");
 const nav_btn = document.querySelector(".nav-toggle");
 window.onclick = e => {
   // for posts drop down
-  if (!e.target.matches(".dropdown-menu")) {
+  if (!e.target.matches(".dotsMenu")) {
     const dropdowns = document.querySelectorAll(".dropdown-content");
     dropdowns.forEach(dropdown => {
       if (dropdown.classList.contains("show-dropdown")) {

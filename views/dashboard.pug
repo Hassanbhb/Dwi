@@ -18,9 +18,10 @@ block content
               h3= `${post.author.username}`
               p= post.createdAt
             if(JSON.stringify(user._id) == JSON.stringify(post.author._id))
-              div.dropdown-menu 
+              .dropdown
+                img(class="dotsMenu" src="images/3-square-dots.svg", alt="Edit/Delete")
                 .dropdown-content
-                  a(href="#" class='deleteBtn' data-post-Id= post_id) Delete
+                  a(href="#" class='deleteBtn' data-post-Id= post_id) Delete                  
                   a(href="#/" class='editModelBtn' data-postId= post_id data-postBody= post.body) Edit
           .postText
             p= post.body
@@ -30,19 +31,20 @@ block content
           .reaction
             button.likeBtn(data-postId= post_id) like
           .comments
-            //- reverse comment array to display newest at the top
-            each comment in post.comments.reverse()
-              .comment
-                .commentOwner
-                  div
-                    h5=`${comment.author.username}`
-                    p=comment.createdAt
-                  if(JSON.stringify(user._id) == JSON.stringify(comment.author._id))
-                    div.dropdown-menu 
-                      .dropdown-content
-                        a(href="#" class='deleteBtn' data-Id= `${post_id} ${comment._id}`) Delete
-                .commentText
-                  p=comment.text
+            if(post.comments.length !== 0)
+              each comment in post.comments.reverse()
+                .comment
+                  .commentOwner
+                    div
+                      h5=`${comment.author.username}`
+                      p=comment.createdAt
+                    if(JSON.stringify(user._id) == JSON.stringify(comment.author._id))
+                      .dropdown
+                        img(class="dotsMenu" src="images/3-square-dots.svg", alt="Edit/Delete")
+                        .dropdown-content
+                          a(href="#" class='deleteBtn' data-Id= `${post_id} ${comment._id}`) Delete
+                  .commentText
+                    p=comment.text
           form(action="dashboard/new/comment?_method=PUT", method="post")
             input(type="hidden", name="postId" value=post_id required)
             input(type="text" name="comment" placeholder="Write a comment..." required)    
@@ -55,6 +57,6 @@ block content
         form(action="dashboard/edit/post?_method=PUT", method="post")
           input(type="hidden", name="postId" class="modelHiddenInput")
           textarea(name="editedText" class="editArea" required)
-          button(type="submit" class="editBtn") Send
+          button(type="submit" class="editBtn") Done
 block scripts
   script(src="/javascripts/dashboard.js")
