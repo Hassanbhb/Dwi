@@ -24,6 +24,29 @@ window.onclick = e => {
   }
 };
 
+function ajaxFunction(method, url, data, changeLocation) {
+  const xmlHttp = new XMLHttpRequest();
+  xmlHttp.open(method, url, true);
+  xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlHttp.onreadystatechange = () => {
+    if (xmlHttp.readyState == 4 && xmlHttp.status === 200) {
+      location.href = "/dashboard";
+    }
+  };
+
+  xmlHttp.send(data);
+}
+
+// Create a post
+const postForm = document.querySelector(".createPost");
+postForm.addEventListener("submit", e => {
+  e.preventDefault();
+  const postText = document.querySelector(".postTextArea").value;
+  const data = `newPost=${postText}`;
+  const url = window.location.href + "/new/post";
+  ajaxFunction("POST", url, data, false);
+});
+
 // deleteBtn functionality
 const deleteBtns = document.querySelectorAll(".deleteBtn");
 deleteBtns.forEach(btn => {

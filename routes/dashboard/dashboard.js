@@ -46,8 +46,12 @@ router.post(
   (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      req.flash("error", `${errors.array()[0].msg}`);
-      res.redirect("/dashboard");
+      res.send({
+        error: {
+          title: "Error",
+          body: errors.array()[0].msg
+        }
+      });
     } else {
       const newPost = {
         body: req.body.newPost,
@@ -60,8 +64,12 @@ router.post(
         if (err) {
           console.log("Error when creating new post");
         }
-        req.flash("success", "Posted successfully");
-        res.redirect("/dashboard");
+        res.send({
+          success: {
+            title: "Posted successfully!",
+            body: "👌"
+          }
+        });
       });
     }
   }

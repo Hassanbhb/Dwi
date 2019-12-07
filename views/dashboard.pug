@@ -4,8 +4,8 @@ block content
   +header(user.username, user.isAdmin)
   main
     .postForm
-      form(action="dashboard/new/post", method="post")
-        textarea(name="newPost", placeHolder="What's on your mind?", required )
+      form.createPost
+        textarea(class="postTextArea" name="newPost", placeHolder="What's on your mind?", required )
         button(type="submit") 
           img(src="images/send_icon.svg", alt="Send")
     .posts
