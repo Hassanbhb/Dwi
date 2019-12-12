@@ -9,6 +9,10 @@
   padding: 0;
 }
 
+body {
+  height: 100vh;
+}
+
 .message {
   position: fixed;
   bottom: -100px;

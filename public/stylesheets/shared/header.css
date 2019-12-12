@@ -80,3 +80,30 @@
   height: 50px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+
+/* for tablets */
+@media only screen and (min-width: 768px) {
+  .main-header {
+    width: 30%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .main-header {
+    position: fixed;
+    z-index: 2;
+    left: -300px;
+    height: 100vh;
+    width: 300px;
+    margin-top: 0;
+    overflow: hidden;
+    background-color: #d6ebff;
+    -webkit-box-shadow: 0px 0px 0px 0px #d2d2d2;
+    box-shadow: 0px 0px 0px 0px #d2d2d2;
+    transform: translateX(100%);
+    transition: transform 0.5s, box-shadow 0.5s;
+  }
+  .nav-toggle {
+    display: none;
+  }
+}

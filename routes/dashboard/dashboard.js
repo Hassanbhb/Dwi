@@ -79,8 +79,12 @@ router.post(
 router.delete("/delete/post", ensureAuthenticated, (req, res) => {
   Posts.findByIdAndDelete({ _id: req.body.postId })
     .then(deletedPost => {
-      req.flash("success", "Post Deleted Successfully");
-      res.send("deleted post");
+      res.send({
+        success: {
+          title: "Post Deleted!",
+          body: "Successfully!"
+        }
+      });
     })
     .catch(err => {
       console.error(err);

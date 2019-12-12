@@ -1,0 +1,29 @@
+extends layouts/layout
+block content
+  include partials/header.pug
+  +header(username, isAdmin)
+  main
+    .controle-posts
+      table.layout.display
+        caption All posts: #{posts.length}
+        thead
+          tr
+            th(scope="col") Date
+            th(scope="col") Author
+            th(scope="col") Content
+            th(scope="col") Reacts
+            th(scope="col") Comments
+            th(scope="col") Actions
+        tbody
+          each post in posts.reverse()
+            - var postId = post._id
+            tr
+              td(data-label="Date") #{post.createdAt}
+              td(data-lebel="Author") #{post.author.username}
+              td(data-label="Content")= post.body
+              td(data-label="Reacts") #{post.likes.length}
+              td(data-label="Comments") #{post.comments.length} 
+              td(data-label="Actions")
+                a(href="#/" class="delete-post" data-postId= postId) Delete 
+block scripts
+  script(src="/javascripts/controle.js")

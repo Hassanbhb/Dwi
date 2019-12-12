@@ -1,45 +1,49 @@
 const express = require("express");
 const router = express.Router();
 const Users = require("../../models/user");
+const Posts = require("../../models/post");
 const bcrypt = require("bcrypt");
 const { check, validationResult } = require("express-validator");
 const { ensureAuthenticated } = require("../../config/auth");
 
 router.get("/profile", ensureAuthenticated, (req, res) => {
-  const userData = {
-    firstName: req.user.name,
-    lastName: req.user.lastName,
-    email: req.user.email
-  };
-  res.render("profile", userData);
+  Posts.find({ author: req.user._id }, (err, data) => {
+    const userData = {
+      username: req.user.username,
+      email: req.user.email,
+      isAdmin: req.user.isAdmin,
+      posts: data
+    };
+    res.render("profile", userData);
+  });
 });
 
-//TODO: split to two, so that we can update posts
-//the user wrote
 router.put(
   "/profile",
   ensureAuthenticated,
   //validating user input
   [
-    check("firstName", "Name must be 2+ chars")
-      .trim()
-      .escape()
-      .isLength({ min: 2 }),
-    check("lastName", "Last name must be 2+ chars")
-      .trim()
-      .escape()
-      .isLength({ min: 2 }),
+    check(
+      "username",
+      "Must be 4 to 21 chars | first char is alpahbetic | can have - and _"
+    )
+      .not()
+      .isEmpty()
+      .isLength({ min: 4, max: 21 })
+      .matches(/[a-zA-Z][a-zA-Z0-9-_]{3,20}/),
     check("email", "Please enter a valid email")
       .not()
       .isEmpty()
       .isEmail(),
-    check("newPassword", "Password must have 5+ chars and at least one number")
+    check("newPassword", "4+ characters | 1+ digit or special char!")
       .not()
       .isEmpty()
-      .isLength({ min: 5 })
-      .matches(/\d/)
+      .isLength({ min: 4 })
+      .matches(
+        /(?=[#$-/:-?{-~!"^_`\[\]a-zA-Z]*([0-9#$-/:-?{-~!"^_`\[\]]))(?=[#$-/:-?{-~!"^_`\[\]a-zA-Z0-9]*[a-zA-Z])[#$-/:-?{-~!"^_`\[\]a-zA-Z0-9]{4,}/
+      )
       .optional({ checkFalsy: true }),
-    check("confirmPassword", "Passwords don't match")
+    check("confirmPassword", "Password do not match!")
       .custom((value, { req }) => value === req.body.newPassword)
       .optional({ checkFalsy: true })
   ],
@@ -47,19 +51,23 @@ router.put(
     const errors = validationResult(req);
     //if validation found errors then display them to user
     if (!errors.isEmpty()) {
-      req.flash("error", `${errors.array()[0].msg}`);
-      res.redirect("/profile");
+      res.send({
+        error: {
+          title: "Error!",
+          body: errors.array()[0].msg
+        }
+      });
     } else {
       // check if password and confirm password exist
       if (req.body.newPassword && req.body.confirmPassword) {
+        console.log("pessword exists");
         //hash the new password
         bcrypt.hash(req.body.newPassword, 10, (err, hash) => {
           if (err) {
             console.log("profilejs: ", err);
           }
           const updated = {
-            name: req.body.firstName,
-            lastName: req.body.lastName,
+            username: req.body.username,
             email: req.body.email,
             password: hash
           };
@@ -67,8 +75,12 @@ router.put(
             useFindAndModify: false
           })
             .then(data => {
-              req.flash("success", "Profile Updated successfully");
-              res.redirect("/profile");
+              res.send({
+                success: {
+                  title: "Success!",
+                  body: "Your password is updated."
+                }
+              });
             })
             .catch(err => {
               console.log("Error: ", err);
@@ -77,8 +89,7 @@ router.put(
       } else {
         //if new password don't exist ten edit the rest
         const updated = {
-          name: req.body.firstName,
-          lastName: req.body.lastName,
+          username: req.body.username,
           email: req.body.email
         };
         //update this users data
@@ -86,8 +97,12 @@ router.put(
           useFindAndModify: false
         })
           .then(data => {
-            req.flash("success", "Profile Updated successfully");
-            res.redirect("/profile");
+            res.send({
+              success: {
+                title: "Success!",
+                body: "Your info has been updated"
+              }
+            });
           })
           .catch(err => {
             console.log(err);

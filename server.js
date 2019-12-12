@@ -29,6 +29,7 @@ const registerRouter = require("./routes/authentication/register");
 const logoutRouter = require("./routes/authentication/logout");
 const dashboardRouter = require("./routes/dashboard/dashboard");
 const profileRouter = require("./routes/profile/profile");
+const controleRouter = require("./routes/controle/contorle");
 
 //set template engine
 app.set("view engine", "pug");
@@ -79,6 +80,7 @@ app.use("/auth", registerRouter);
 app.use("/", logoutRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/", profileRouter);
+app.use("/controle", controleRouter);
 //catch unexisting routes
 app.use(function(req, res, next) {
   // create a page to handle this case

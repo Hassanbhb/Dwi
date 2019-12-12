@@ -5,6 +5,7 @@
 main {
   background-color: #f8fcff;
   height: 100vh;
+  overflow: auto;
 }
 
 .postForm {
@@ -171,7 +172,7 @@ button.likeBtn {
 
 .card form input {
   margin: 0;
-  border: 1px #000 solid;
+  border: 1px #ccc solid;
   border-radius: 25px;
   padding: 0 15px;
   outline: none;
@@ -246,4 +247,51 @@ button.likeBtn {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+/* for tablets */
+@media only screen and (min-width: 768px) {
+  .postForm form {
+    width: 55%;
+  }
+
+  .postForm form textarea {
+    font-size: 22px;
+  }
+
+  .card {
+    width: 70%;
+    margin: 30px auto 0px auto;
+  }
+
+  .modal-content {
+    padding: 8px;
+    width: 75%;
+    margin: 15% auto 0px auto;
+  }
+}
+
+/* for laptops */
+@media only screen and (min-width: 992px) {
+  main {
+    margin-left: 300px;
+    background-color: #fff;
+  }
+
+  .card {
+    width: 50%;
+  }
+
+  .card form button {
+    height: 60px;
+  }
+
+  .editModal {
+    padding-left: 300px;
+    width: calc(100% - 300px);
+  }
+  .modal-content {
+    width: 75%;
+  }
 }
