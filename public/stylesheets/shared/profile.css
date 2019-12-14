@@ -188,4 +188,7 @@ td a.delete-post {
   .profile-menu a {
     cursor: pointer;
   }
+  .profile-form button {
+    cursor: pointer;
+  }
 }

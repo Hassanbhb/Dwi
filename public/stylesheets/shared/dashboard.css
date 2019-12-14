@@ -279,12 +279,28 @@ button.likeBtn {
     background-color: #fff;
   }
 
+  .postForm form button {
+    cursor: pointer;
+  }
+
   .card {
     width: 50%;
   }
 
   .card form button {
     height: 60px;
+  }
+
+  .dropdown img {
+    cursor: pointer;
+  }
+
+  button.likeBtn {
+    cursor: pointer;
+  }
+
+  .card form button {
+    cursor: pointer;
   }
 
   .editModal {
