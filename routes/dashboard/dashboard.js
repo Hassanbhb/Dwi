@@ -122,7 +122,6 @@ router.put(
         { new: true, useFindAndModify: false }
       )
         .then(updatedPost => {
-          req.flash("success", "Commented successfully");
           res.redirect("/dashboard");
         })
         .catch(err => {
@@ -174,7 +173,6 @@ router.put(
       .exists({ checkFalsy: true })
   ],
   (req, res) => {
-    // TODO: validate input
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       req.flash("error", `${errors.array()[0].msg}`);
@@ -198,15 +196,12 @@ router.put("/delete/comment", ensureAuthenticated, (req, res) => {
   const data = req.body.postId.split(" ");
   const postId = data[0];
   const commentId = data[1];
-  console.log(commentId);
   Posts.findByIdAndUpdate(
     { _id: postId },
     { $pull: { comments: { _id: commentId } } },
     { new: true, useFindAndModify: false }
   )
     .then(editedPost => {
-      console.log(editedPost);
-      req.flash("success", "Comment deleted successfully");
       res.send("deleted comment");
     })
     .catch(err => {

@@ -43,7 +43,7 @@ router.post(
         { $or: [{ email: req.body.email }, { username: req.body.username }] },
         (err, user) => {
           if (err) console.log(err);
-          //if user with this email exists
+          //if user with this email or username exists
           if (user) {
             // return error if user has the same email or the same username
             if (user.email === req.body.email) {
@@ -62,7 +62,6 @@ router.post(
               });
             }
           } else {
-            //TODO: validate input
             const newUser = {
               username: req.body.username,
               email: req.body.email,

@@ -16,7 +16,6 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
-const flash = require("connect-flash");
 const methodOverride = require("method-override");
 
 //require passoprt config
@@ -60,14 +59,6 @@ app.use(
     saveUninitialized: true
   })
 );
-
-//connect flash middleware
-app.use(flash());
-app.use((req, res, next) => {
-  res.locals.errors = req.flash("error");
-  res.locals.successes = req.flash("success");
-  next();
-});
 
 //initialize passport
 app.use(passport.initialize());
