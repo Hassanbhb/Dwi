@@ -33,6 +33,7 @@
 }
 .signup {
   flex-grow: 1;
+  margin-right: 10px;
 }
 
 .signup a {
@@ -86,6 +87,7 @@
   }
   .signup {
     flex-grow: 1;
+    margin-right: 40px;
   }
   .home-container div {
     display: flex;
