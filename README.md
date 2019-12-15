@@ -13,6 +13,13 @@ cd Dwi
 npm install
 ```
 
+ِCreate a `.env` file and add these envirment variales
+
+```
+DATABASE_URL=mongodb://localhost/dwi
+SECRET=yourSecret
+```
+
 ### Running devlopment mode
 
 ```javasjcript
