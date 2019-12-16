@@ -28,4 +28,22 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  })
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/login",
+    successRedirect: "/dashboard"
+  })
+);
+
 module.exports = router;

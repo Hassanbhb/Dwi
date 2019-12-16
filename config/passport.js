@@ -1,4 +1,7 @@
+const mongoose = require("mongoose");
 const LocalStrategy = require("passport-local");
+const GoogleStratey = require("passport-google-oauth").OAuth2Strategy;
+const configAuth = require("./configAuth");
 const bcrypt = require("bcrypt");
 
 //load user model
@@ -12,7 +15,6 @@ module.exports = function(passport) {
         passReqToCallback: true
       },
       function(req, email, password, done) {
-        // TODO: validate input
         User.findOne({ email: email }, function(err, user) {
           if (err) {
             return done(err);
@@ -29,6 +31,42 @@ module.exports = function(passport) {
             }
             return done(null, user);
           });
+        });
+      }
+    )
+  );
+
+  passport.use(
+    new GoogleStratey(
+      {
+        clientID: configAuth.googleAuth.clientID,
+        clientSecret: configAuth.googleAuth.clientSecret,
+        callbackURL: configAuth.googleAuth.callbackURL
+      },
+      function(accessToken, refreshToken, profile, done) {
+        process.nextTick(function() {
+          User.findOne({ "google.id": profile.id })
+            .then(user => {
+              if (user) {
+                return done(null, user);
+              } else {
+                const newUser = new User();
+                newUser.username = profile.displayName;
+                newUser.email = profile.emails[0].value;
+                newUser.google.username = profile.displayName;
+                newUser.google.email = profile.emails[0].value;
+                newUser.google.token = accessToken;
+                newUser.google.id = profile.id;
+
+                newUser.save(function(err) {
+                  if (err) {
+                    throw err;
+                  }
+                  return done(null, newUser);
+                });
+              }
+            })
+            .catch(err => done(err));
         });
       }
     )
