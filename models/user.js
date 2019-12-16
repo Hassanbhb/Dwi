@@ -11,11 +11,16 @@ const userSchema = new Schema({
     required: true
   },
   password: {
-    type: String,
-    required: true
+    type: String
   },
   isAdmin: {
     type: Boolean
+  },
+  google: {
+    id: String,
+    token: String,
+    email: String,
+    username: String
   }
 });
 

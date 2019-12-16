@@ -21,8 +21,8 @@ block content
               .dropdown
                 img(class="dotsMenu" src="images/3-square-dots.svg", alt="Edit/Delete")
                 .dropdown-content
-                  a(href="#/" class='deleteBtn' data-post-Id= post_id) Delete                  
-                  a(href="#/" class='editModelBtn' data-postId= post_id data-postBody= post.body) Edit
+                  a(href="" class='deleteBtn' data-post-Id= post_id) Delete                  
+                  a(href="" class='editModelBtn' data-postId= post_id data-postBody= post.body) Edit
           .postText
             p= post.body
           .postLikes
@@ -42,7 +42,7 @@ block content
                       .dropdown
                         img(class="dotsMenu" src="images/3-square-dots.svg", alt="Edit/Delete")
                         .dropdown-content
-                          a(href="#" class='deleteBtn' data-Id= `${post_id} ${comment._id}`) Delete
+                          a(href="" class='deleteBtn' data-Id= `${post_id} ${comment._id}`) Delete
                   .commentText
                     p=comment.text
           form(action="dashboard/new/comment?_method=PUT", method="post")
