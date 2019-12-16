@@ -75,6 +75,20 @@ form input {
   cursor: pointer;
 }
 
+/* google auth btn */
+.google-btn {
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Roboto, sans-serif;
+  text-decoration: none;
+  text-align: center;
+  background-color: #f84848;
+  padding: 15px 0;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
 .hide {
   display: none;
 }
@@ -95,6 +109,10 @@ form input {
     align-items: center;
     background: linear-gradient(239.21deg, #ffffff 29.23%, #d9edff 116.86%);
   }
+  .auth-btn,
+  .google-btn {
+    font-size: 20px;
+  }
   .auth-svg {
     display: block;
     width: 800px;
@@ -111,8 +129,5 @@ form input {
   form input {
     height: 60px;
     font-size: 20px;
-  }
-  .auth-btn {
-    font-size: 30px;
   }
 }
