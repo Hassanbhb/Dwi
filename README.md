@@ -18,6 +18,10 @@ npm install
 ```
 DATABASE_URL=mongodb://localhost/dwi
 SECRET=yourSecret
+//get these from your google devlopers console
+GOOGLE_CLIENT_ID=
+GOOGLE_SECRET=
+APP_URL=(add your app url ex: htttp://localhost:4000)
 ```
 
 ### Running devlopment mode
