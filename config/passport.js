@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const LocalStrategy = require("passport-local");
 const GoogleStratey = require("passport-google-oauth").OAuth2Strategy;
 const configAuth = require("./configAuth");
@@ -23,14 +22,18 @@ module.exports = function(passport) {
             return done(null, false);
           }
           //compare passwords
-          bcrypt.compare(password, user.password, (err, res) => {
-            if (err) throw err;
-            //if don't match send error
-            if (!res) {
-              return done(null, false);
-            }
-            return done(null, user);
-          });
+          if (user.password) {
+            bcrypt.compare(password, user.password, (err, res) => {
+              if (err) throw err;
+              //if don't match send error
+              if (!res) {
+                return done(null, false);
+              }
+              return done(null, user);
+            });
+          } else {
+            return done(null, false);
+          }
         });
       }
     )
