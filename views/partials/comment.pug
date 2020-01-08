@@ -1,0 +1,13 @@
+mixin comment(comment)
+  .comment
+    .commentOwner
+      div
+        h5=`${comment.author.username}`
+        p=comment.createdAt
+      if(JSON.stringify(user._id) == JSON.stringify(comment.author._id))
+        .dropdown
+          img(class="dotsMenu" src="images/3-square-dots.svg" alt="Edit/Delete")
+          .dropdown-content
+            a(href="" class='deleteBtn' data-Id= `${post_id} ${comment._id}`) Delete
+    .commentText
+      p=comment.text
