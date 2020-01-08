@@ -4,7 +4,7 @@
   "description": "An application to talk with posts",
   "main": "server.js",
   "scripts": {
-    "devStart": "nodemon server.js",
+    "dev-start": "nodemon server.js",
     "start": "node server.js"
   },
   "keywords": [
