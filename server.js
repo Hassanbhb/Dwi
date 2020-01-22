@@ -3,7 +3,6 @@ if (process.env.NODE_ENV !== "production") {
   // require dotenv if development env
   require("dotenv").config();
 }
-
 const express = require("express");
 const helmet = require("helmet");
 
@@ -30,10 +29,15 @@ const dashboardRouter = require("./routes/dashboard/dashboard");
 const profileRouter = require("./routes/profile/profile");
 const controleRouter = require("./routes/controle/contorle");
 
-//set template engine
+// set template engine
 app.set("view engine", "pug");
 
-app.use(express.static(path.join(__dirname, "public")));
+// if production ise the src folder, that is where the bundled js and css are
+if (process.env.NODE_ENV !== "production") {
+  app.use(express.static(path.join(__dirname, "public")));
+} else {
+  app.use(express.static(path.join(__dirname, "src")));
+}
 
 app.use(methodOverride("_method"));
 
