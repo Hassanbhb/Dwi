@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "dev-start": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "gulp"
   },
   "keywords": [
     "Social",
