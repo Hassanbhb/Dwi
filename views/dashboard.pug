@@ -12,7 +12,7 @@ block content
     .posts
       //- reverse posts to display newest at the top
       each post in posts.reverse()
-        +postCard(post)
+        +postCard(post, user._id)
     .editModal
       .modal-content
         span.close-modal &times;

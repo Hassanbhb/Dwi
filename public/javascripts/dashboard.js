@@ -92,14 +92,15 @@ likeBtn.forEach(btn => {
 
     xhttp.onreadystatechange = function() {
       if (xhttp.readyState == 4 && xhttp.status === 200) {
-        //update ui
-        let likeNum = parseFloat(likesDisplay.innerHTML);
-        if (xhttp.response === "add") {
-          likeNum++;
-        } else {
-          likeNum--;
-        }
-        likesDisplay.innerHTML = likeNum;
+        //   //update ui
+        //   let likeNum = parseFloat(likesDisplay.innerHTML);
+        //   if (xhttp.response === "add") {
+        //     likeNum++;
+        //   } else {
+        //     likeNum--;
+        //   }
+        //   likesDisplay.innerHTML = likeNum;
+        location.reload();
       }
     };
 

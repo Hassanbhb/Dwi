@@ -14,6 +14,7 @@ router.get("/", ensureAuthenticated, (req, res) => {
       path: "comments.author",
       model: "User"
     })
+    .populate("likes", "username")
     .populate("author", "_id username")
     .then(posts => {
       // then render the posts

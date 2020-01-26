@@ -22,10 +22,17 @@ const postSchema = new Schema({
     required: true
   },
   comments: [commentSchema],
-  likes: {
-    type: Array,
-    required: true
-  },
+  likes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+    }
+  ],
+  // likes: {
+  //   type: Array,
+  //   required: true
+  // },
   createdAt: {
     type: String,
     required: true

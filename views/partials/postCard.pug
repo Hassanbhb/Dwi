@@ -1,4 +1,4 @@
-mixin postCard(post)
+mixin postCard(post, userId)
   include ./comment.pug 
   - var post_id = post._id;
   .card
@@ -15,8 +15,21 @@ mixin postCard(post)
     .postText
       p= post.body
     .postLikes
-      img(src="images/heartIcon.svg" alt="heart")
-      p(class='heart-' + post_id) #{post.likes.length}
+      - var likes = post.likes.length;
+      case likes
+        when 0
+          img(src="images/empty-heart-icon.svg" alt="empty heart")
+        when 1
+          img(src= post.likes.some(user => JSON.stringify(user._id) === JSON.stringify(userId)) ? "images/filled-heart-icon.svg" : "images/empty-heart-icon.svg")
+          p(class='heart-' + post_id) #{post.likes[0].username} likes this
+        when 2
+          img(src= post.likes.some(user => JSON.stringify(user._id) === JSON.stringify(userId)) ? "images/filled-heart-icon.svg" : "images/empty-heart-icon.svg")
+          p(class='heart-' + post_id) #{post.likes[0].username} and #{post.likes[1].username} like this
+        default
+          img(src= post.likes.some(user => JSON.stringify(user._id) === JSON.stringify(userId)) ? "images/filled-heart-icon.svg" : "images/empty-heart-icon.svg")
+          p(class='heart-' + post_id) #{post.likes[0].username} and #{post.likes[1].username} and #{likes - 2} like this
+      //- img(src="images/heartIcon.svg" alt="heart")
+      //- p(class='heart-' + post_id) #{post.likes.length}
     .reaction
       button.likeBtn(data-postId= post_id) like
     .comments
