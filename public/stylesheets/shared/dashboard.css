@@ -4,8 +4,8 @@
 
 main {
   background-color: #f8fcff;
-  height: 100vh;
   overflow: auto;
+  padding-bottom: 30px;
 }
 
 .postForm {
