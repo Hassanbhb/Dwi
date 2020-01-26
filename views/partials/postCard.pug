@@ -28,8 +28,6 @@ mixin postCard(post, userId)
         default
           img(src= post.likes.some(user => JSON.stringify(user._id) === JSON.stringify(userId)) ? "images/filled-heart-icon.svg" : "images/empty-heart-icon.svg")
           p(class='heart-' + post_id) #{post.likes[0].username} and #{post.likes[1].username} and #{likes - 2} like this
-      //- img(src="images/heartIcon.svg" alt="heart")
-      //- p(class='heart-' + post_id) #{post.likes.length}
     .reaction
       button.likeBtn(data-postId= post_id) like
     .comments
