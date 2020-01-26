@@ -24,6 +24,16 @@ window.onclick = e => {
   }
 };
 
+// keep postion after reload
+document.addEventListener("DOMContentLoaded", function(event) {
+  var scrollpos = sessionStorage.getItem("scrollpos");
+  if (scrollpos) window.scrollTo(0, scrollpos);
+});
+
+window.onbeforeunload = function(e) {
+  sessionStorage.setItem("scrollpos", window.scrollY);
+};
+
 function ajaxFunction(method, url, data, changeLocation) {
   const xmlHttp = new XMLHttpRequest();
   xmlHttp.open(method, url, true);
