@@ -57,7 +57,7 @@ router.post(
       const newPost = {
         body: req.body.newPost,
         comments: [],
-        createdAt: moment().format("l, h:mm a"),
+        createdAt: moment().format("DD/MM/YYYY, h:mm a"),
         author: req.user._id
       };
       const post = new Posts(newPost);
