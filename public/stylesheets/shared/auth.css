@@ -103,10 +103,11 @@ form input {
 }
 
 /* laptops */
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1110px) {
   .auth-container {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 15px;
     background: linear-gradient(239.21deg, #ffffff 29.23%, #d9edff 116.86%);
   }
   .auth-btn,
@@ -115,13 +116,14 @@ form input {
   }
   .auth-svg {
     display: block;
-    width: 800px;
-  }
-  .svg-container {
-    margin-left: 20px;
+    width: 600px;
+    align-self: center;
+    justify-self: center;
   }
   .form-group {
-    width: 30%;
+    align-self: center;
+    justify-self: center;
+    width: 500px;
   }
   .form-header div a {
     font-size: 18px;
