@@ -6,7 +6,7 @@
   width: 70%;
   margin-top: 0;
   overflow: hidden;
-  background-color: #d6ebff;
+  background-color: #f0faff;
   -webkit-box-shadow: 0px 0px 0px 0px #d2d2d2;
   box-shadow: 0px 0px 0px 0px #d2d2d2;
   transform: translateX(100%);
@@ -24,32 +24,30 @@
   flex-direction: column;
 }
 
-.nav-logo {
-  font-size: 40px;
-  font-family: var(--logo-font);
-  color: #fff;
+.user {
+  margin-top: 80px;
   text-align: center;
 }
 
-.user {
-  margin-top: 20px;
-  text-align: center;
+.user img {
+  width: 100px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0px 7px 34px rgba(0, 0, 0, 0.12);
 }
 
 .user p {
   font-family: var(--main-font);
-  font-size: 16px;
-  margin-top: 10px;
+  font-weight: bolder;
+  font-size: 19px;
+  margin-top: 20px;
 }
 
 .main-nav ul {
-  margin-top: 40px;
-  height: 200px;
+  margin-top: 60px;
   list-style: none;
-  background-color: #e4f2ff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
 .main-nav ul li {
@@ -61,15 +59,23 @@
   font-family: var(--main-font);
   color: black;
   text-decoration: none;
-  width: inherit;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
-.main-nav ul li a:hover {
-  background-color: #f6fbff;
+.main-nav ul li a svg {
+  margin-right: 15px;
+  align-self: center;
+  justify-self: end;
+  width: 35px;
+}
+.main-nav ul li a span {
+  align-self: center;
+  justify-self: self-start;
+  font-size: 20px;
+  margin-left: -10px;
 }
 
 .nav-toggle {
@@ -84,7 +90,7 @@
 /* for tablets */
 @media only screen and (min-width: 768px) {
   .main-header {
-    width: 30%;
+    width: 35%;
   }
 }
 
@@ -97,10 +103,22 @@
     width: 300px;
     margin-top: 0;
     overflow: hidden;
-    background-color: #d6ebff;
-    -webkit-box-shadow: 0px 0px 0px 0px #d2d2d2;
-    box-shadow: 0px 0px 0px 0px #d2d2d2;
   }
+
+  .active span {
+    color: #2d29f6;
+  }
+  .active,
+  .main-nav ul li a:hover {
+    background-color: #ffffff;
+    color: #2d29f6;
+  }
+
+  .active svg path,
+  .main-nav ul li a:hover svg path {
+    fill: #2d29f6;
+  }
+
   .nav-toggle {
     display: none;
   }

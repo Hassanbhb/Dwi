@@ -24,7 +24,8 @@ router.get("/", ensureAuthenticated, (req, res) => {
           username: req.user.username,
           isAdmin: req.user.isAdmin
         },
-        posts
+        posts,
+        page_name: "dashboard"
       });
     })
     .catch(err => {

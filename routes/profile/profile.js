@@ -12,7 +12,8 @@ router.get("/profile", ensureAuthenticated, (req, res) => {
       username: req.user.username,
       email: req.user.email,
       isAdmin: req.user.isAdmin,
-      posts: data
+      posts: data,
+      page_name: "profile"
     };
     res.render("profile", userData);
   });
