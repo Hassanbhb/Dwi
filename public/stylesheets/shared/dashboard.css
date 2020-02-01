@@ -310,4 +310,7 @@ button.likeBtn {
   .modal-content {
     width: 75%;
   }
+  .modal-content button {
+    cursor: pointer;
+  }
 }
