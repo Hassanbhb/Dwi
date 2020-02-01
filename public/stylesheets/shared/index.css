@@ -2,74 +2,61 @@
   background-color: #e7f9ff;
   background: linear-gradient(180.03deg, #ffffff 0.01%, #d9edff 156.94%);
   height: 100vh;
-}
-.home-header {
-  height: 70px;
-}
-.home-nav ul {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  list-style: none;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.home-nav ul li {
-  height: 100%;
-}
-.home-nav ul li a {
-  text-decoration: none;
+
+.elements,
+.text {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 35%;
 }
 
 .logo {
   font-family: var(--logo-font);
-  font-size: 48px;
-  color: #0047ff;
-  padding-left: 10px;
-  flex-grow: 1;
-}
-.signup {
-  flex-grow: 1;
-  margin-right: 10px;
+  font-size: 30px;
+  text-align: center;
 }
 
-.signup a {
-  font-family: var(--main-font);
+.signup {
+  font-family: Roboto;
+  display: block;
+  background: #879eff;
+  padding: 30px;
+  text-align: center;
+  font-size: 15px;
   font-weight: bold;
-  font-size: 18px;
   color: #fff;
-  background: #38db53;
-  border: 1px solid #32d64d;
-  border-radius: 5px;
-  height: 40px;
+  margin-top: 70px;
 }
 
 .home-text {
   font-family: var(--main-font);
-  font-size: 25px;
+  font-size: 16px;
   text-align: center;
-  margin-top: 10%;
-  color: #433d9e;
+  color: #81879f;
 }
 
 .home-svg {
   height: 300px;
   display: block;
-  margin: 12px auto;
+  margin: 0 auto;
+  padding-top: 50px;
 }
 
 /* for tablets */
 @media only screen and (min-width: 768px) {
-  .home-nav ul .logo {
-    flex-grow: 5;
-    justify-content: start;
-    margin-left: 20px;
+  .home-svg {
+    height: 400px;
   }
-  .signup {
-    flex-grow: 1;
+  .home-text {
+    font-size: 30px;
+  }
+  .logo {
+    font-size: 60px;
   }
 }
 
@@ -77,32 +64,25 @@
 @media only screen and (min-width: 992px) {
   .home-container {
     background: linear-gradient(239.21deg, #ffffff 29.23%, #d9edff 116.86%);
-  }
-  header {
-    height: 10%;
-  }
-  .home-nav ul .logo {
-    font-size: 64px;
-    flex-grow: 10;
-  }
-  .signup {
-    flex-grow: 1;
-    margin-right: 40px;
-  }
-  .home-container div {
-    display: flex;
+    flex-direction: row;
     align-items: center;
-    height: 90%;
+    justify-content: space-evenly;
   }
+  .elements,
+  .text {
+    justify-content: space-evenly;
+  }
+  .logo,
   .home-text {
-    font-size: 64px;
-    margin: auto 0;
-    width: 800px;
-    flex-grow: 1;
+    flex-direction: column;
   }
   .home-svg {
-    height: 550px;
     margin: 0;
-    flex-grow: 1;
+    height: 500px;
+  }
+  .signup {
+    margin: 0;
+    padding: 18px;
+    border-radius: 3px;
   }
 }
