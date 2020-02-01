@@ -1,23 +1,29 @@
-mixin header(username, isAdmin)
+mixin header(username, isAdmin, pageName)
   .main-header
     .main-nav
-      .nav-logo
-        h4 Dwi
       .user
         img(src=`https://ui-avatars.com/api/?name=${username}&rounded=true`, alt="userImage")
         p= username
       ul
         li
-          a(href="/dashboard") 
-            span Home
+          a(class=(pageName === "dashboard" ? "active" : undefined) href="/dashboard") 
+            svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24")
+              path(fill="#9893B7" d="M11 18h3c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1h-3c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm-6 0h3c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1v11c0 .55.45 1 1 1zm12 0h3c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1h-3c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zM10 6v4c0 .55.45 1 1 1h9c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1h-9c-.55 0-1 .45-1 1z")
+            span Feed
         li
-          a(href="/profile") 
+          a(class=(pageName === "profile" ? "active" : undefined) href="/profile") 
+            svg(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 24 24')
+              path(fill='#9893B7' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z')
             span Profile
         li
           a(href="/logout") 
+            svg(xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' preserveaspectratio='xMidYMid meet' viewbox='0 0 24 24' style='-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);')
+              path(d='M16 17v-3H9v-4h7V7l5 5l-5 5M14 2a2 2 0 0 1 2 2v2h-2V4H5v16h9v-2h2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9z' fill='#9893B7')
+              rect(x='0' y='0' width='24' height='24' fill='rgba(0, 0, 0, 0)')
             span Logout
         if isAdmin
           li 
-            a(href="/controle") 
+            a(href="/controle")
+              img(src="images/feed-icon-24px.svg" alt="feed icon")
               span Controle
-  img(class="nav-toggle" src="images/hamburger-icon.svg", alt="mobile-menu")  
+  img(class="nav-toggle" src="images/hamburger-icon.svg" alt="mobile-menu")  
