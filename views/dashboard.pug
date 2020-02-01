@@ -2,7 +2,7 @@ extends layouts/layout.pug
 block content
   include partials/header.pug
   include partials/postCard.pug
-  +header(user.username, user.isAdmin)
+  +header(user.username, user.isAdmin, page_name)
   main
     .postForm
       form.createPost
