@@ -1,8 +1,7 @@
 extends layouts/layout.pug
 block content
   .auth-container
-    .svg-container
-      img(src="images/auth-svg.svg", alt="authentication image" class="auth-svg")
+    img(src="images/auth-svg.svg" alt="authentication image" class="auth-svg")
     .form-group
       div.form-header
         a(href="/" class="form-logo") Dwi
@@ -10,15 +9,15 @@ block content
           P(class="signup-btn") Signup
           P(class="login-btn active") Login
       form(class="login-form")
-        input(type="email", name="email", placeholder="Email (example@example.com)" class='login_email' required)
-        input(type="password", name="password", placeholder="Password (4+ charachters)" class="login_password" required)
-        input(type="submit", value="Login" class="auth-btn") 
+        input(type="email" name="email" placeholder="Email (example@example.com)" class='login_email' required)
+        input(type="password" name="password" placeholder="Password (4+ charachters)" class="login_password" required)
+        input(type="submit" value="Login" class="auth-btn") 
       form(class="signup-form hide")
-        input(type="text", name="username", placeholder="Username" class="signup_username" required)
-        input(type="email", name="email", placeholder="Email (example@example.com)" class="signup_email" required)
-        input(type="password", name="password" placeholder="Password (4+ charachters)" class="signup_password" required)
-        input(type="password", name="confirmPassword" placeholder="Confirm Password" class="signup_confirm_pswd" required)
-        input(type="submit", value="Create your acount >>" class="auth-btn")
+        input(type="text" name="username" placeholder="Username" class="signup_username" required)
+        input(type="email" name="email" placeholder="Email (example@example.com)" class="signup_email" required)
+        input(type="password" name="password" placeholder="Password (4+ charachters)" class="signup_password" required)
+        input(type="password" name="confirmPassword" placeholder="Confirm Password" class="signup_confirm_pswd" required)
+        input(type="submit" value="Create your acount >>" class="auth-btn")
       <a class="google-btn" href="/auth/google">Sign In with Google</a>
 block scripts
   script(src="javascripts/auth-page.js")
