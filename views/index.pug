@@ -1,12 +1,9 @@
 extends layouts/layout.pug
 block content
   .home-container
-    header.home-header
-      nav.home-nav
-        ul
-          li.logo Dwi
-          li.signup
-            a(href="/auth") Signup / Login
-    div
-      p.home-text Dwi Lets you write and share with everyone
-      img(src="images/home-post.svg", alt="svg icon", class="home-svg")
+    img(src="images/home-post.svg" alt="s:vg icon" class="home-svg")
+    .elements
+      div.text
+        p.logo Dwi
+        p.home-text Write so that everyone reads
+      a(href="/auth" class="signup") Login / Sign up
