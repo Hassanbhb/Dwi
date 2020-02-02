@@ -9,36 +9,46 @@ main {
 }
 
 .postForm {
-  height: 140px;
-  background-color: #f7f7f7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 155px;
+  box-shadow: 0px 0px 36px rgba(0, 0, 0, 0.05);
 }
 
 .postForm form {
-  width: 80%;
-  position: relative;
+  height: 100%;
 }
 
 .postForm form textarea {
   height: 78px;
   font-family: var(--main-font);
-  padding: 5px 50px 5px 15px;
-  border-radius: 15px;
+  padding: 15px 15px 5px 15px;
   resize: none;
   outline: none;
-  border: 1px solid var(--post-form-border-color);
+  border: none;
+  border-bottom: 2.5px solid rgba(0, 0, 0, 0.15);
+  flex-grow: 1;
 }
 
-.postForm form button {
-  width: 50px;
+.postForm form textarea::placeholder {
+  color: #c5c5c5;
+}
+
+.postForm form div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: #fff;
+}
+
+.postForm form div button {
+  height: 45px;
+  width: 120px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: var(--main-font);
   border: none;
-  background-color: transparent;
-  position: absolute;
-  right: 0px;
-  top: 50%;
-  transform: translateY(-50%);
+  border-radius: 5px;
+  background-color: #ff3b1d;
 }
 
 /* Post cards styles */
@@ -252,8 +262,11 @@ button.likeBtn {
 
 /* for tablets */
 @media only screen and (min-width: 768px) {
-  .postForm form {
-    width: 55%;
+  .postForm {
+    height: 180px;
+    width: 640px;
+    margin: 0 auto;
+    margin-top: 45px;
   }
 
   .postForm form textarea {
@@ -279,7 +292,17 @@ button.likeBtn {
     background-color: #fff;
   }
 
-  .postForm form button {
+  .postForm {
+    width: 765px;
+    height: 210px;
+  }
+
+  .postForm form div button {
+    height: 43px;
+    width: 150px;
+    margin: 5px 10px;
+    font-size: 20px;
+    border-radius: 24px;
     cursor: pointer;
   }
 

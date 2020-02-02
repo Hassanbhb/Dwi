@@ -7,8 +7,8 @@ block content
     .postForm
       form.createPost
         textarea(class="postTextArea" name="newPost" placeHolder="What's on your mind?", required )
-        button(type="submit") 
-          img(src="images/send_icon.svg" alt="Send")
+        div
+          button(type="submit") POST
     .posts
       //- reverse posts to display newest at the top
       each post in posts.reverse()
