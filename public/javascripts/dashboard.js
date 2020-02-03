@@ -94,27 +94,31 @@ const likeBtn = document.querySelectorAll(".likeBtn");
 likeBtn.forEach(btn => {
   btn.addEventListener("click", e => {
     const url = window.location.href + "/new/like";
-    const postId = e.target.getAttribute("data-postID");
-    const likesDisplay = document.querySelector(".heart-" + postId);
+    const postId =
+      e.target.getAttribute("data-postID") ||
+      e.target.parentNode.getAttribute("data-postID");
+    console.log(postId);
     const xhttp = new XMLHttpRequest();
     xhttp.open("PUT", url, true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhttp.onreadystatechange = function() {
       if (xhttp.readyState == 4 && xhttp.status === 200) {
-        //   //update ui
-        //   let likeNum = parseFloat(likesDisplay.innerHTML);
-        //   if (xhttp.response === "add") {
-        //     likeNum++;
-        //   } else {
-        //     likeNum--;
-        //   }
-        //   likesDisplay.innerHTML = likeNum;
         location.reload();
       }
     };
 
     xhttp.send(`postId=${postId}`);
+  });
+});
+
+//Comments toggle button
+const commentsBtn = document.querySelectorAll(".comments-btn");
+commentsBtn.forEach(btn => {
+  btn.addEventListener("click", e => {
+    e.target.parentElement.parentElement.nextSibling.nextSibling.lastElementChild.classList.toggle(
+      "comments-hide"
+    );
   });
 });
 

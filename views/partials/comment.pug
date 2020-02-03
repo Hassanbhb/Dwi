@@ -1,9 +1,10 @@
 mixin comment(comment)
   .comment
     .commentOwner
-      div
-        h5=`${comment.author.username}`
-        p=comment.createdAt
+
+      img(class="commentAvatar" src=`https://ui-avatars.com/api/?name=${comment.author.username}&rounded=true`, alt="comment author avatar")
+      span.commentAuthor=`${comment.author.username}`
+      span.commentDate=comment.createdAt
       if(JSON.stringify(user._id) == JSON.stringify(comment.author._id))
         .dropdown
           img(class="dotsMenu" src="images/3-square-dots.svg" alt="Edit/Delete")
