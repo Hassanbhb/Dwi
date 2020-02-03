@@ -83,14 +83,24 @@ updateForm.addEventListener("submit", e => {
   xhttp.send(data);
 });
 
-//Delete post in the profile
+// Post content toggle
+
+const showBtns = document.querySelectorAll(".actions > div > img");
+showBtns.forEach(showBtn => {
+  showBtn.addEventListener("click", e => {
+    e.target.parentElement.parentElement.parentElement.nextSibling.classList.toggle(
+      "hide"
+    );
+  });
+});
+
+// Delete post in the profile
 const delete_btns = document.querySelectorAll(".delete-post");
 delete_btns.forEach(delete_btn => {
   delete_btn.addEventListener("click", e => {
     e.preventDefault();
     let url = window.location.origin + "/dashboard/delete/post";
-
-    let Id = e.target.getAttribute("data-postId");
+    let Id = e.target.parentNode.getAttribute("data-postId");
     let method = "DELETE";
 
     const xhttp = new XMLHttpRequest();
