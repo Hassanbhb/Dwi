@@ -21,24 +21,24 @@ block content
           input(type="password" name="confirmPassword" placeholder="Confirm Password")
       button(type="submit") Update
     .myposts.hide
-      table.layout.display
-        caption My posts: #{posts.length}
-        thead
-          tr
-            th(scope="col") Date
-            th(scope="col") Content
-            th(scope="col") Reacts
-            th(scope="col") Comments
-            th(scope="col") Actions
-        tbody
-          each post in posts.reverse()
-            - var postId = post._id
-            tr
-              td(data-label="Date") #{post.createdAt}
-              td(data-label="Content")= post.body
-              td(data-label="Reacts") #{post.likes.length}
-              td(data-label="Comments") #{post.comments.length} 
-              td(data-label="Actions")
-                a(href="#/" class="delete-post" data-postId= postId) Delete 
+      h1 My posts: #{posts.length}
+      .labels
+        p Date
+        p Reacts
+        p Comments
+        p Actions
+      each post in posts.reverse()
+        - var postId = post._id
+        .postData
+          p= post.createdAt.split(',')[0]
+          p= post.likes.length
+          p= post.comments.length
+          .actions
+            div
+              img(src="images/show-24px.svg" alt="Show post")
+            a(href='#/' class="delete-post" data-postId= postId)
+              img(src="images/delete-24px.svg" alt="delete post")
+        .postContent.hide
+          p= post.body
 block scripts
   script(src="/javascripts/profile.js")
