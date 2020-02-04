@@ -53,20 +53,46 @@ module.exports = function(passport) {
               if (user) {
                 return done(null, user);
               } else {
-                const newUser = new User();
-                newUser.username = profile.displayName;
-                newUser.email = profile.emails[0].value;
-                newUser.google.username = profile.displayName;
-                newUser.google.email = profile.emails[0].value;
-                newUser.google.token = accessToken;
-                newUser.google.id = profile.id;
+                // check if another user with this email or username exist
+                User.findOne({
+                  $or: [
+                    { email: profile.emails[0].value },
+                    { username: profile.displayName }
+                  ]
+                })
+                  .then(user => {
+                    // if no user has this email or username create a new one
+                    if (!user) {
+                      const newUser = new User();
+                      newUser.username = profile.displayName;
+                      newUser.email = profile.emails[0].value;
+                      newUser.google.token = accessToken;
+                      newUser.google.id = profile.id;
 
-                newUser.save(function(err) {
-                  if (err) {
-                    throw err;
-                  }
-                  return done(null, newUser);
-                });
+                      newUser.save(function(err) {
+                        if (err) {
+                          throw err;
+                        }
+                        return done(null, newUser);
+                      });
+                    } else {
+                      // else update the existing one to link google to it
+                      const googleData = {
+                        token: accessToken,
+                        id: profile.id
+                      };
+                      User.findByIdAndUpdate(
+                        { _id: user._id },
+                        { google: googleData },
+                        { new: true }
+                      )
+                        .then(user => {
+                          done(null, user);
+                        })
+                        .catch(err => done(err));
+                    }
+                  })
+                  .catch(err => done(err));
               }
             })
             .catch(err => done(err));
