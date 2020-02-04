@@ -42,7 +42,6 @@ router.post(
       .not()
       .isEmpty()
       .trim()
-      .escape()
       .exists({ checkFalsy: true })
   ],
   (req, res) => {
@@ -102,7 +101,6 @@ router.put(
       .not()
       .isEmpty()
       .trim()
-      .escape()
       .exists({ checkFalsy: true })
   ],
   (req, res) => {
@@ -171,7 +169,6 @@ router.put(
       .not()
       .isEmpty()
       .trim()
-      .escape()
       .exists({ checkFalsy: true })
   ],
   (req, res) => {
