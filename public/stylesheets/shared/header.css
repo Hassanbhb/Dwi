@@ -94,7 +94,7 @@
   }
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1050px) {
   .main-header {
     position: fixed;
     z-index: 2;
