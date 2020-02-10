@@ -29,10 +29,6 @@ const postSchema = new Schema({
       required: true
     }
   ],
-  // likes: {
-  //   type: Array,
-  //   required: true
-  // },
   createdAt: {
     type: String,
     required: true
