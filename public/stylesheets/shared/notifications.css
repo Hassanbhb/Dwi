@@ -1,0 +1,71 @@
+.notifications {
+  font-family: var(--main-font);
+}
+
+.notifications h1 {
+  font-size: 25px;
+  display: block;
+  background-color: #fafafa;
+  padding: 15px 15px 15px 20px;
+}
+
+.notifications .notif {
+  height: 80px;
+  background-color: #f8fbff;
+  margin-bottom: 3px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "bell content remove"
+    "bell date remove";
+}
+
+.notifications .notif svg {
+  grid-area: bell;
+  align-self: center;
+  padding: 5px 15px 5px 20px;
+}
+
+.notifications .notif p {
+  grid-area: content;
+  align-self: center;
+}
+
+.notifications .notif span {
+  grid-area: date;
+  justify-self: center;
+  align-self: center;
+}
+
+.notifications .notif button {
+  grid-area: remove;
+  border: none;
+  background-color: tomato;
+  width: 30px;
+}
+
+.notifications .notif button img {
+  display: block;
+  width: inherit;
+  height: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .notifications {
+    display: grid;
+  }
+  .notifications .notif {
+    grid-template-columns: auto minmax(0, 1fr) 0.6fr auto;
+    grid-template-areas: "bell content date remove";
+    width: 600px;
+    justify-self: center;
+  }
+}
+@media only screen and (min-width: 1050px) {
+  .notifications {
+    margin-left: 300px;
+  }
+  .notifications .notif button {
+    cursor: pointer;
+  }
+}

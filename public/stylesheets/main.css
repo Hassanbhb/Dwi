@@ -4,6 +4,7 @@
 @import "shared/auth.css";
 @import "shared/profile.css";
 @import "shared/dashboard.css";
+@import "shared/notifications.css";
 * {
   margin: 0;
   padding: 0;
