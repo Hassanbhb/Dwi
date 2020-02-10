@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const notificationSchema = new Schema({
+  from: String,
+  when: String,
+  title: String
+});
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -16,6 +22,7 @@ const userSchema = new Schema({
   isAdmin: {
     type: Boolean
   },
+  notifications: [notificationSchema],
   google: {
     id: String,
     token: String
