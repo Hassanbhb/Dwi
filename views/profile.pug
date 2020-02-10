@@ -1,7 +1,7 @@
 extends layouts/layout.pug
 block content
   include partials/header.pug
-  +header(username, isAdmin, page_name)
+  +header(username, isAdmin, page_name, notifications)
   .profile-container
     .profile-menu
       a(class="updateBtn") Update

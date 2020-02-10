@@ -12,6 +12,9 @@ router.get("/profile", ensureAuthenticated, (req, res) => {
       username: req.user.username,
       email: req.user.email,
       isAdmin: req.user.isAdmin,
+      notifications: req.user.notifications.filter(
+        notif => notif.from !== req.user.username
+      ),
       posts: data,
       page_name: "profile"
     };

@@ -1,4 +1,4 @@
-mixin header(username, isAdmin, pageName)
+mixin header(username, isAdmin, pageName, notifications)
   .main-header
     .main-nav
       .user
@@ -15,6 +15,11 @@ mixin header(username, isAdmin, pageName)
             svg(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 24 24')
               path(fill='#9893B7' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z')
             span Profile
+        li
+          a(class=(pageName === "notifications" ? "active" : undefined) href="/notifications")
+            svg(viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg")
+              path(d="M21 19V20H3V19L5 17V11C5 7.9 7.03 5.17 10 4.29V4C10 3.46957 10.2107 2.96086 10.5858 2.58579C10.9609 2.21071 11.4696 2 12 2C12.5304 2 13.0391 2.21071 13.4142 2.58579C13.7893 2.96086 14 3.46957 14 4V4.29C16.97 5.17 19 7.9 19 11V17L21 19ZM14 21C14 21.5304 13.7893 22.0391 13.4142 22.4142C13.0391 22.7893 12.5304 23 12 23C11.4696 23 10.9609 22.7893 10.5858 22.4142C10.2107 22.0391 10 21.5304 10 21" fill="#9893B7")
+            span=`Notifictions ${notifications && notifications.length !== 0 ? notifications.length : ''}`
         li
           a(href="/logout") 
             svg(xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' preserveaspectratio='xMidYMid meet' viewbox='0 0 24 24' style='-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);')

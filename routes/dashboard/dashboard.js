@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated } = require("../../config/auth");
 const Posts = require("../../models/post");
+const Users = require("../../models/user");
 const moment = require("moment");
 const { check, validationResult } = require("express-validator");
 
@@ -22,7 +23,10 @@ router.get("/", ensureAuthenticated, (req, res) => {
         user: {
           _id: req.user._id,
           username: req.user.username,
-          isAdmin: req.user.isAdmin
+          isAdmin: req.user.isAdmin,
+          notifications: req.user.notifications.filter(
+            notif => notif.from !== req.user.username
+          )
         },
         posts,
         page_name: "dashboard"
@@ -92,7 +96,7 @@ router.delete("/delete/post", ensureAuthenticated, (req, res) => {
     });
 });
 
-//edit post to add a comment to it
+//edit post to add a comment to it and add a notification to the post owner
 router.put(
   "/new/comment",
   ensureAuthenticated,
@@ -122,7 +126,16 @@ router.put(
         { new: true, useFindAndModify: false }
       )
         .then(updatedPost => {
-          res.redirect("/dashboard");
+          const notification = {
+            from: req.user.username,
+            when: moment().format("DD/MM/YYYY, h:mm a"),
+            title: `${req.user.username} commented on your post`
+          };
+          Users.findByIdAndUpdate(updatedPost.author, {
+            $push: { notifications: notification }
+          }).then(user => {
+            res.redirect("/dashboard");
+          });
         })
         .catch(err => {
           console.log(err);
