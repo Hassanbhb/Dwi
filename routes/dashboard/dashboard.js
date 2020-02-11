@@ -131,9 +131,13 @@ router.put(
             when: moment().format("DD/MM/YYYY, h:mm a"),
             title: `${req.user.username} commented on your post`
           };
-          Users.findByIdAndUpdate(updatedPost.author, {
-            $push: { notifications: notification }
-          }).then(user => {
+          Users.findByIdAndUpdate(
+            updatedPost.author,
+            {
+              $push: { notifications: notification }
+            },
+            { new: true, useFindAndModify: false }
+          ).then(user => {
             res.redirect("/dashboard");
           });
         })
