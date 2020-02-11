@@ -42,6 +42,7 @@
   border: none;
   background-color: tomato;
   width: 30px;
+  height: inherit;
 }
 
 .notifications .notif button img {
