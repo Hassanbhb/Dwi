@@ -105,6 +105,13 @@
     overflow: hidden;
   }
 
+  .user {
+    margin-top: 60px;
+  }
+
+  .main-nav ul {
+    margin-top: 60px;
+  }
   .active span {
     color: #2d29f6;
   }
