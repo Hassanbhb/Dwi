@@ -21,13 +21,13 @@ SECRET=yourSecret
 //get these from your google devlopers console
 GOOGLE_CLIENT_ID=
 GOOGLE_SECRET=
-APP_URL=(add your app url ex: htttp://localhost:4000)
+APP_URL=(add your app url ex: http://localhost:4000)
 ```
 
 ### Running devlopment mode
 
 ```javasjcript
-npm run devStart
+npm run dev-start
 ```
 
 ### Contributing
