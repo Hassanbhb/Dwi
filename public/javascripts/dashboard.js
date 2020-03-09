@@ -165,7 +165,6 @@ nav_btn.addEventListener("click", e => {
 });
 
 const message = document.querySelector(".message");
-const message_title = document.querySelector(".message-title");
 const message_body = document.querySelector(".message-body");
 function messageDisplay(isError, msgObj, changeLocation) {
   if (isError) {
