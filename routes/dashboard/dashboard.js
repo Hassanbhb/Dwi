@@ -45,6 +45,8 @@ router.post(
     check("newPost", "field must not be empty")
       .not()
       .isEmpty()
+      .isLength({ max: 3000 })
+      .withMessage("Posts must be 3000 charcters or less")
       .trim()
       .exists({ checkFalsy: true })
   ],

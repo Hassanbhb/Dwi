@@ -40,7 +40,9 @@ function ajaxFunction(method, url, data, changeLocation) {
   xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlHttp.onreadystatechange = () => {
     if (xmlHttp.readyState == 4 && xmlHttp.status === 200) {
-      location.href = "/dashboard";
+      const msgObj = JSON.parse(xmlHttp.response);
+      const isError = msgObj.hasOwnProperty("error");
+      messageDisplay(isError, msgObj, changeLocation);
     }
   };
 
@@ -54,7 +56,19 @@ postForm.addEventListener("submit", e => {
   const postText = document.querySelector(".postTextArea").value;
   const data = `newPost=${postText}`;
   const url = window.location.href + "/new/post";
-  ajaxFunction("POST", url, data, false);
+  ajaxFunction("POST", url, data, true);
+});
+
+// post size counter
+const postTextArea = document.querySelector(".postTextArea");
+const sizeDisplay = document.querySelector("span.size");
+postTextArea.addEventListener("input", e => {
+  const count = e.target.value;
+  sizeDisplay.innerHTML = count.length;
+  sizeDisplay.style.color = "green";
+  if (count.length > 3000) {
+    sizeDisplay.style.color = "red";
+  }
 });
 
 // deleteBtn functionality
@@ -149,3 +163,28 @@ closeBtn.addEventListener("click", e => {
 nav_btn.addEventListener("click", e => {
   main_header.classList.toggle("active");
 });
+
+const message = document.querySelector(".message");
+const message_title = document.querySelector(".message-title");
+const message_body = document.querySelector(".message-body");
+function messageDisplay(isError, msgObj, changeLocation) {
+  if (isError) {
+    message.classList.add("message-error");
+    message.classList.remove("hide-message");
+    setTimeout(function() {
+      message.classList.add("hide-message");
+    }, 5000);
+    message_body.innerHTML = msgObj.error.body;
+  } else {
+    if (changeLocation) {
+      location.href = "/dashboard";
+    } else {
+      message.classList.add("message-success");
+      message.classList.remove("hide-message");
+      setTimeout(() => {
+        message.classList.add("hide-message");
+      }, 5000);
+      message_body.innerHTML = msgObj.success.body;
+    }
+  }
+}
