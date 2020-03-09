@@ -183,6 +183,14 @@ main {
 }
 
 /* comments styles */
+.commentCounter {
+  margin-left: 10px;
+  font-size: 11px;
+}
+.comments-hide {
+  display: none;
+}
+
 .comment {
   max-width: max-content;
   margin-top: 12px;
@@ -390,7 +398,8 @@ main {
     cursor: pointer;
   }
 
-  .likeBtn {
+  .likeBtn,
+  .comments-btn {
     cursor: pointer;
   }
 

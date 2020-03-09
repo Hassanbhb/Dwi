@@ -46,7 +46,7 @@ router.post(
       .not()
       .isEmpty()
       .isLength({ max: 3000 })
-      .withMessage("Posts must be 3000 charcters or less")
+      .withMessage("Posts must be 3000 characters or less")
       .trim()
       .exists({ checkFalsy: true })
   ],
@@ -106,14 +106,20 @@ router.put(
     check("comment", "field must not be empty")
       .not()
       .isEmpty()
+      .isLength({ max: 250 })
+      .withMessage("Comment must be 250 characters or less")
       .trim()
       .exists({ checkFalsy: true })
   ],
   (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      req.flash("error", `${errors.array()[0].msg}`);
-      res.redirect("/dashboard");
+      res.send({
+        error: {
+          title: "Error",
+          body: errors.array()[0].msg
+        }
+      });
     } else {
       const newComment = {
         author: req.user._id,
@@ -140,7 +146,12 @@ router.put(
             },
             { new: true, useFindAndModify: false }
           ).then(user => {
-            res.redirect("/dashboard");
+            res.send({
+              success: {
+                title: "Comented successfully!",
+                body: "👌"
+              }
+            });
           });
         })
         .catch(err => {

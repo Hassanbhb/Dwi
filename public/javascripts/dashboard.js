@@ -71,6 +71,37 @@ postTextArea.addEventListener("input", e => {
   }
 });
 
+// create a comment
+const commentForms = document.querySelectorAll(".comments > form");
+commentForms.forEach(form => {
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const commentId = e.target.elements[0].value;
+    const commentText = e.target.elements[1].value;
+    const data = `postId=${commentId}&comment=${commentText}`;
+    const url = window.location.href + "/new/comment";
+    ajaxFunction("PUT", url, data, true);
+  });
+});
+
+// comment size counter
+const commentInputs = document.querySelectorAll(
+  '.comments > form > input[name="comment"]'
+);
+commentInputs.forEach(input => {
+  input.addEventListener("input", e => {
+    const count = e.target.value;
+    const commentSizeDisplay =
+      e.target.form.parentElement.previousSibling.lastElementChild
+        .firstElementChild;
+    commentSizeDisplay.innerHTML = count.length;
+    commentSizeDisplay.style.color = "green";
+    if (count.length > 250) {
+      commentSizeDisplay.style.color = "red";
+    }
+  });
+});
+
 // deleteBtn functionality
 const deleteBtns = document.querySelectorAll(".deleteBtn");
 deleteBtns.forEach(btn => {
