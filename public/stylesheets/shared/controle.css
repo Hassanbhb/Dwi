@@ -1,0 +1,12 @@
+.control_posts_labels,
+.postData_control {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.postData_control .actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  width: 100%;
+}
