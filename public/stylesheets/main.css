@@ -5,6 +5,7 @@
 @import "shared/profile.css";
 @import "shared/dashboard.css";
 @import "shared/notifications.css";
+@import "shared/controle.css";
 * {
   margin: 0;
   padding: 0;

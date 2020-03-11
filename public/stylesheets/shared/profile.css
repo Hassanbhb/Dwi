@@ -102,6 +102,7 @@
 .actions > div > img {
   width: 32px;
   height: inherit;
+  padding: 0 24px;
 }
 
 .actions > a {
@@ -114,6 +115,7 @@
 .actions > a > img {
   width: 32px;
   height: inherit;
+  padding: 0 24px;
 }
 
 .postContent {
