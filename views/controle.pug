@@ -4,26 +4,25 @@ block content
   +header(username, isAdmin)
   main
     .controle-posts
-      table.layout.display
-        caption All posts: #{posts.length}
-        thead
-          tr
-            th(scope="col") Date
-            th(scope="col") Author
-            th(scope="col") Content
-            th(scope="col") Reacts
-            th(scope="col") Comments
-            th(scope="col") Actions
-        tbody
-          each post in posts.reverse()
-            - var postId = post._id
-            tr
-              td(data-label="Date") #{post.createdAt}
-              td(data-lebel="Author") #{post.author.username}
-              td(data-label="Content")= post.body
-              td(data-label="Reacts") #{post.likes.length}
-              td(data-label="Comments") #{post.comments.length} 
-              td(data-label="Actions")
-                a(href="#/" class="delete-post" data-postId= postId) Delete 
+      .myposts
+        h1 My posts: #{posts.length}
+        .control_posts_labels
+          p Date
+          p Author
+          p Comments
+          p Actions
+        each post in posts.reverse()
+          - var postId = post._id
+          .postData_control
+            p= post.createdAt.split(',')[0]
+            p= post.author.username
+            p= post.comments.length
+            .actions
+              div
+                img(src="images/show-24px.svg" alt="Show post")
+              a(href='#/' class="delete-post" data-postId= postId)
+                img(src="images/delete-24px.svg" alt="delete post")
+          .postContent.hide
+            p= post.body
 block scripts
   script(src="/javascripts/controle.js")
