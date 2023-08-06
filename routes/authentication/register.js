@@ -40,57 +40,60 @@ router.post(
     } else {
       //check if a user has the same username or email
       User.findOne(
-        { $or: [{ email: req.body.email }, { username: req.body.username }] },
-        (err, user) => {
-          if (err) console.log(err);
-          //if user with this email or username exists
-          if (user) {
-            // return error if user has the same email or the same username
-            if (user.email === req.body.email) {
-              res.send({
-                error: {
-                  title: "Email already exists!",
-                  body: "Please login or use a new email"
-                }
-              });
-            } else if (user.username === req.body.username) {
-              res.send({
-                error: {
-                  title: "Username already exists!",
-                  body: "Please try again."
-                }
-              });
-            }
-          } else {
-            const newUser = {
-              username: req.body.username,
-              email: req.body.email,
-              password: req.body.password
-            };
-            //hash password
-            bcrypt.hash(req.body.password, 10, (err, hash) => {
-              newUser.password = hash;
-              const user = new User(newUser);
-              user.save(err => {
-                if (err) {
+        { $or: [{ 'email': req.body.email }, { 'username': req.body.username }] },
+      ).then((user) => {
+        //if user with this email or username exists
+        if (user) {
+          // return error if user has the same email or the same username
+          if (user.email === req.body.email) {
+            res.send({
+              error: {
+                title: "Email already exists!",
+                body: "Please login or use a new email"
+              }
+            });
+          } else if (user.username === req.body.username) {
+            res.send({
+              error: {
+                title: "Username already exists!",
+                body: "Please try again."
+              }
+            });
+          }
+        } else {
+          const newUser = {
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+          };
+          //hash password
+          bcrypt.hash(req.body.password, 10, (err, hash) => {
+            newUser.password = hash;
+            const user = new User(newUser);
+            user.save()
+                .then(() => {
+                  res.send({
+                    success: {
+                      title: "Success",
+                      body: "You can login now 👌"
+                    }
+                  });
+                })
+                .catch(err => {
+                  console.log(err)
                   res.send({
                     error: {
                       title: "Error!",
                       body: "please try again!"
                     }
                   });
-                }
-                res.send({
-                  success: {
-                    title: "Success",
-                    body: "You can login now 👌"
-                  }
-                });
-              });
-            });
-          }
+                  
+                })
+          });
         }
-      );
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 );
