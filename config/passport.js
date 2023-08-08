@@ -68,12 +68,13 @@ module.exports = function(passport) {
                       newUser.google.token = accessToken;
                       newUser.google.id = profile.id;
 
-                      newUser.save(function(err) {
-                        if (err) {
-                          throw err;
-                        }
+                      newUser.save()
+                      .then(() => {
                         return done(null, newUser);
-                      });
+                      })
+                      .catch(err => {
+                        throw err
+                      })
                     } else {
                       // else update the existing one to link google to it
                       const googleData = {
