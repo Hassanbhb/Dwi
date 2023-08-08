@@ -80,7 +80,6 @@ router.post(
                   });
                 })
                 .catch(err => {
-                  console.log(err)
                   res.send({
                     error: {
                       title: "Error!",
