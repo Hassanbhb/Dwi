@@ -7,19 +7,22 @@ const { check, validationResult } = require("express-validator");
 const { ensureAuthenticated } = require("../../config/auth");
 
 router.get("/profile", ensureAuthenticated, (req, res) => {
-  Posts.find({ author: req.user._id }, (err, data) => {
-    const userData = {
-      username: req.user.username,
-      email: req.user.email,
-      isAdmin: req.user.isAdmin,
-      notifications: req.user.notifications.filter(
-        notif => notif.from !== req.user.username
-      ),
-      posts: data,
-      page_name: "profile"
-    };
-    res.render("profile", userData);
-  });
+  Posts.find({ author: req.user._id })
+      .then((data) => {
+        {
+          const userData = {
+            username: req.user.username,
+            email: req.user.email,
+            isAdmin: req.user.isAdmin,
+            notifications: req.user.notifications.filter(
+              notif => notif.from !== req.user.username
+            ),
+            posts: data,
+            page_name: "profile"
+          };
+          res.render("profile", userData);
+        }
+      }).catch(err => console.log(err))
 });
 
 router.put(
