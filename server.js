@@ -9,6 +9,12 @@ const helmet = require("helmet");
 const app = express();
 
 app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+  useDefaults: true,
+  directives: {
+    "img-src": ["'self'", 'https: data:']
+  }
+}))
 
 const path = require("path");
 const mongoose = require("mongoose");
