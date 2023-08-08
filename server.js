@@ -40,9 +40,9 @@ app.set("view engine", "pug");
 
 // if production ise the src folder, that is where the bundled js and css are
 if (process.env.NODE_ENV !== "production") {
-  app.use(express.static(path.join(__dirname, "public")));
+  app.use("/public", express.static(path.join(__dirname, "public")));
 } else {
-  app.use(express.static(path.join(__dirname, "src")));
+  app.use("/src", express.static(path.join(__dirname, "src")));
 }
 
 app.use(methodOverride("_method"));
