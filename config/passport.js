@@ -14,24 +14,26 @@ module.exports = function(passport) {
         passReqToCallback: true
       },
       function(req, email, password, done) {
-        User.findOne({ email: email }).then((user) => {
-          if (!user) {
-            return done(null, false);
-          }
-          //compare passwords
-          if (user.password) {
-            bcrypt.compare(password, user.password, (err, res) => {
-              if (err) throw err;
-              //if don't match send error
-              if (!res) {
+        User.findOne({ email: email })
+            .then((user) => {
+              if (!user) {
                 return done(null, false);
               }
-              return done(null, user);
-            });
-          } else {
-            return done(null, false);
-          }
-        }).catch(err => done(err))
+              //compare passwords
+              if (user.password) {
+                bcrypt.compare(password, user.password, (err, res) => {
+                  if (err) throw err;
+                  //if don't match send error
+                  if (!res) {
+                    return done(null, false);
+                  }
+                  return done(null, user);
+                });
+              } else {
+                return done(null, false);
+              }
+            })
+            .catch(err => done(err))
       }
     )
   );
@@ -103,8 +105,8 @@ module.exports = function(passport) {
   });
 
   passport.deserializeUser((id, done) => {
-    User.findById(id, function(err, user) {
-      done(err, user);
-    });
+    User.findById(id)
+        .then(user => done(null, user))
+        .catch(err => done(err))
   });
 };

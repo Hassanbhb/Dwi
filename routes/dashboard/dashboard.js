@@ -67,17 +67,18 @@ router.post(
         author: req.user._id
       };
       const post = new Posts(newPost);
-      post.save(err => {
-        if (err) {
-          console.log("Error when creating new post");
-        }
-        res.send({
-          success: {
-            title: "Posted successfully!",
-            body: "👌"
-          }
-        });
-      });
+      post.save()
+          .then(() => {
+            res.send({
+              success: {
+                title: "Posted successfully!",
+                body: "👌"
+              }
+            });
+          })
+          .catch(err => {
+            console.log("Error when creating new post: ", err);
+          })
     }
   }
 );
