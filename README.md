@@ -3,6 +3,10 @@
 Dwi is a simple application where you can post for others to see.
 No longer maintained.
 
+
+https://github.com/Hassanbhb/Dwi/assets/19411608/52b30a17-d6a0-4e1c-a0b0-e380b7fa92b4
+
+
 ## Getting started
 
 Make sure you have nodejs/npm/mongodb already installed locally.
